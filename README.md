@@ -1,5 +1,6 @@
-# Project of Data Visualization (COM-480) - 2022 
-Happiness, income and alcohol 
+# Data Visualization (COM-480) - 2022
+## If Not Alcohol, What Makes Us Happy?
+A visualization project on the topic of happiness, GDP per capita and ... alcohol consumption.
 
 | Name              | Sciper |
 |-------------------|--------|
@@ -12,4 +13,3 @@ Happiness, income and alcohol
 [Report For Milestone 1](Milestones/milestone1.ipynb)
 
 [Quick data preprocessing](Preprocessing/check_countries.py)
-
