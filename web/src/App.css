@@ -28,6 +28,55 @@
   color: #61dafb;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 100vh 100vh 100vh 100vh;
+  grid-template-areas:
+    ". page-1 ."
+    ". page-2 ."
+    ". page-3 ."
+    ". page-4 ."
+}
+
+.page {
+  border-style: dashed;
+}
+
+.page-1 {
+  grid-area: page-1;
+
+  grid-template-rows: 20vh 1fr 1fr;
+  grid-template-areas:
+    "title"
+    "chart"
+    "text";
+}
+
+.page-1-title {
+  grid-area: title;
+}
+
+.page-1-chart {
+  grid-area: chart;
+}
+
+.page-1-text {
+  grid-area: text;
+}
+
+.page-2 {
+  grid-area: page-2;
+}
+
+.page-3 {
+  grid-area: page-3;
+}
+
+.page-4 {
+  grid-area: page-4;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +85,4 @@
     transform: rotate(360deg);
   }
 }
+
