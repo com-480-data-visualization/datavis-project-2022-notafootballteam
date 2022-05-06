@@ -13,3 +13,8 @@ A visualization project on the topic of happiness, GDP per capita and ... alcoho
 [Report For Milestone 1](Milestones/milestone1.ipynb)
 
 [Quick data preprocessing](Preprocessing/check_countries.py)
+
+## Milestone 2 (Friday 6 May, 5 pm) 
+[Report For Milestone 2](Milestones/milestone2.ipynb)
+
+[Homepage](index.html)
