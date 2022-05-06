@@ -14,20 +14,21 @@ function App() {
         <div class="page page-1">
           <div class="page-1-title">Which countries are the happiest?</div>
           <div class="page-1-chart"><img src={bar} /></div>
-          <div class="page-1-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex lacus, pulvinar vitae nunc vitae, faucibus fermentum arcu. Nullam augue nibh, pellentesque ut eros quis, pharetra porttitor ligula. Vivamus eget elit mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam scelerisque tellus vel libero lobortis bibendum. Nulla et sapien magna. Maecenas egestas erat vel nibh interdum maximus. Cras et semper dolor. Cras sed porttitor neque.</div>
+          <div class="page-1-text">The above chart will be animated.</div>
         </div>
         <div class="page page-2">
           <div class="page-2-title">Explore</div>
           <div class="page-2-chart"><img src={map} /></div>
-          <div class="page-2-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex lacus, pulvinar vitae nunc vitae, faucibus fermentum arcu. Nullam augue nibh, pellentesque ut eros quis, pharetra porttitor ligula. Vivamus eget elit mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam scelerisque tellus vel libero lobortis bibendum. Nulla et sapien magna. Maecenas egestas erat vel nibh interdum maximus. Cras et semper dolor. Cras sed porttitor neque.</div>
+          <div class="page-2-text">By clickling on a country on the map above, the user will go down to the next page and view stats about the country.</div>
         </div>
         <div class="page page-3">
-          <div class="page-3-top-left"><img src={oh_dist} />HELLO1</div>
-          <div class="page-3-top-right"><img src={happy_dist} />HELLO2</div>
-          <div class="page-3-bottom-left"><img src={scatter} />HELLO3</div>
+          <div class="page-3-top-left"><img src={oh_dist} /></div>
+          <div class="page-3-top-right"><img src={happy_dist} /></div>
+          <div class="page-3-bottom-left"><img src={scatter} /></div>
           <div class="page-3-bottom-right"><img src={radar} /></div>
         </div>
         <div class="page page-4">Fun Animation</div>
+        <div id="timeline-overlay"></div>
       </div>
     </div>
   );
