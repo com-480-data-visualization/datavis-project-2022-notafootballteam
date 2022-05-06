@@ -28,7 +28,7 @@ function App() {
           <div class="page-3-bottom-right"><img src={radar} /></div>
         </div>
         <div class="page page-4">Fun Animation</div>
-        <div id="timeline-overlay"></div>
+        <div id="timeline-overlay">Timeline to query year</div>
       </div>
     </div>
   );
