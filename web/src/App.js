@@ -9,6 +9,8 @@ import radar from './images/radar.png';
 import useInterval from './useInterval';
 import AnimatedBarChart from './AnimatedBarChart';
 import year_2015 from './data/data_2005.csv';
+import WorldMap from './WorldMap';
+import map_data from './new.geo.json'
 
 const testData = [[
   {
@@ -201,6 +203,7 @@ function App() {
   const [iteration, setIteration] = useState(1)
   const [start, setStart] = useState(true)
   const [allData, setAllData] = useState(testData)
+  const [property, setProperty] = useState("pop_est")
   const [data, setData] = useState(testData[0])
   
 
@@ -227,7 +230,22 @@ function App() {
         </div>
         <div class="page page-2">
           <div class="page-2-title">Explore</div>
-          <div class="page-2-chart"><img src={map} /></div>
+          <div class="page-2-chart">
+            <WorldMap data={map_data} property={property}/>
+            <h2>Select property to highlight</h2>
+      <select value={property} onChange={event => setProperty(event.target.value)}>
+        <option value="pop_est" color="red">Population</option>
+        <option value="Life Ladder">Happiness</option>
+        <option value="Log GDP per capita">GDP</option>
+        <option value="Social support">Social support</option>
+        <option value="Healthy life expectancy at birth">Life expectancy</option>
+        <option value="Freedom to make life choices">Freedom to make life choices</option>
+        <option value="Generosity">Generosity</option>
+        <option value="Perceptions of corruption">Perceptions of corruption</option>
+        <option value="Alcohol consumption">Alcohol consumption</option>
+        <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
+      </select>
+            </div>
           <div class="page-2-text">By clickling on a country on the map above, the user will go down to the next page and view stats about the country.</div>
         </div>
         <div class="page page-3">
