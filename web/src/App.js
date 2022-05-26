@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import {csv} from "d3";
 import map from './images/map.png';
 import oh_dist from './images/oh_dist.png';
 import happy_dist from './images/happy_dist.png';
@@ -7,6 +8,7 @@ import scatter from './images/scatter.png';
 import radar from './images/radar.png';
 import useInterval from './useInterval';
 import AnimatedBarChart from './AnimatedBarChart';
+import year_2015 from './data/data_2005.csv';
 
 const testData = [[
   {
@@ -195,10 +197,12 @@ const testData = [[
 
 
 function App() {
+  csv(year_2015, data => console.log(data))
   const [iteration, setIteration] = useState(1)
   const [start, setStart] = useState(true)
   const [allData, setAllData] = useState(testData)
   const [data, setData] = useState(testData[0])
+  
 
   useInterval(() => {
     if(start) {
