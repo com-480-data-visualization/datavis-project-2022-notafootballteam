@@ -10,7 +10,7 @@ import useInterval from './useInterval';
 import AnimatedBarChart from './AnimatedBarChart';
 import year_2015 from './data/data_2005.csv';
 import WorldMap from './WorldMap';
-import map_data from './new.geo.json'
+import {map_data_2005, map_data_2021} from './data'
 
 const testData = [[
   {
@@ -231,7 +231,7 @@ function App() {
         <div class="page page-2">
           <div class="page-2-title">Explore</div>
           <div class="page-2-chart">
-            <WorldMap data={map_data} property={property}/>
+            <WorldMap data={map_data_2021} property={property}/>
             <h2>Select property to highlight</h2>
       <select value={property} onChange={event => setProperty(event.target.value)}>
         <option value="pop_est" color="red">Population</option>
