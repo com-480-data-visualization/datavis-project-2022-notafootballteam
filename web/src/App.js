@@ -1,219 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import './App.css';
 import {csv} from "d3";
-import map from './images/map.png';
-import oh_dist from './images/oh_dist.png';
-import happy_dist from './images/happy_dist.png';
-import scatter from './images/scatter.png';
-import radar from './images/radar.png';
-import useInterval from './useInterval';
-import AnimatedBarChart from './AnimatedBarChart';
-import year_2015 from './data/data_2005.csv';
-import WorldMap from './WorldMap';
-import {map_data_2005, map_data_2021} from './data'
-
-const testData = [[
-  {
-    name: "Egypt",
-    value: 10,
-    color: "#f4efd3",
-    flag : "🇪🇬"
-  },
-  {
-    name: "France",
-    value: 15,
-    color: "#cccccc",
-    flag : "🇫🇷"
-  },
-  {
-    name: "Switzerland",
-    value: 20,
-    color: "#c2b0c9",
-    flag : "🇨🇭"
-  },
-  {
-    name: "Germany",
-    value: 25,
-    color: "#9656a1",
-    flag : "🇩🇪"
-  },
-  {
-    name: "Iceland",
-    value: 30,
-    color: "#fa697c",
-    flag : "🇮🇸"
-  },
-  {
-    name: "Argentina",
-    value: 40,
-    color: "#3e90f9",
-    flag : "🇦🇷"
-  },
-  {
-    name: "USA",
-    value: 45,
-    color: "#7ce1af",
-    flag : "🇺🇸"
-  },
-  {
-    name: "UK",
-    value: 50,
-    color: "#7fe8e9",
-    flag : "🇬🇧"
-  },
-  {
-    name: "Turkey",
-    value: 55,
-    color: "#fa697c",
-    flag : "🇹🇷"
-  },
-  {
-    name: "South Korea",
-    value: 60,
-    color: "#dda000",
-    flag : "🇰🇷"
-  },
-],[
-  {
-    name: "Senegal",
-    value: 17,
-    color: "#f4efd3",
-    flag : "🇸🇳"
-  },
-  {
-    name: "France",
-    value: 15,
-    color: "#cccccc",
-    flag : "🇫🇷"
-  },
-  {
-    name: "Switzerland",
-    value: 80,
-    color: "#c2b0c9",
-    flag : "🇨🇭"
-  },
-  {
-    name: "Germany",
-    value: 25,
-    color: "#9656a1",
-    flag : "🇩🇪"
-  },
-  {
-    name: "Iceland",
-    value: 40,
-    color: "#fa697c",
-    flag : "🇮🇸"
-  },
-  {
-    name: "Argentina",
-    value: 30,
-    color: "#3e90f9",
-    flag : "🇦🇷"
-  },
-  {
-    name: "USA",
-    value: 45,
-    color: "#7ce1af",
-    flag : "🇺🇸"
-  },
-  {
-    name: "UK",
-    value: 50,
-    color: "#7fe8e9",
-    flag : "🇬🇧"
-  },
-  {
-    name: "Turkey",
-    value: 55,
-    color: "#fa697c",
-    flag : "🇹🇷"
-  },
-  {
-    name: "South Korea",
-    value: 60,
-    color: "#dda000",
-    flag : "🇰🇷"
-  },
-],[
-  {
-    name: "Egypt",
-    value: 10,
-    color: "#f4efd3",
-    flag : "🇪🇬"
-  },
-  {
-    name: "France",
-    value: 15,
-    color: "#cccccc",
-    flag : "🇫🇷"
-  },
-  {
-    name: "Switzerland",
-    value: 20,
-    color: "#c2b0c9",
-    flag : "🇨🇭"
-  },
-  {
-    name: "Germany",
-    value: 25,
-    color: "#9656a1",
-    flag : "🇩🇪"
-  },
-  {
-    name: "Iceland",
-    value: 30,
-    color: "#fa697c",
-    flag : "🇮🇸"
-  },
-  {
-    name: "Argentina",
-    value: 40,
-    color: "#3e90f9",
-    flag : "🇦🇷"
-  },
-  {
-    name: "USA",
-    value: 45,
-    color: "#7ce1af",
-    flag : "🇺🇸"
-  },
-  {
-    name: "UK",
-    value: 70,
-    color: "#7fe8e9",
-    flag : "🇬🇧"
-  },
-  {
-    name: "Turkey",
-    value: 66,
-    color: "#fa697c",
-    flag : "🇹🇷"
-  },
-  {
-    name: "South Korea",
-    value: 60,
-    color: "#dda000",
-    flag : "🇰🇷"
-  },
-]]
+import oh_dist from './Assets/images/oh_dist.png';
+import happy_dist from './Assets//images/happy_dist.png';
+import scatter from './Assets/images/scatter.png';
+import radar from './Assets/images/radar.png';
+import useInterval from './Utils/useInterval';
+import AnimatedBarChart from './Components/AnimatedBarChart';
+import WorldMap from './Components/WorldMap';
+import {map_data_2005, map_data_2021} from './Assets/data'
+import {data_2005, data_2006, data_2007, data_2008, data_2009, 
+        data_2010, data_2011, data_2012, data_2013, data_2014, 
+        data_2015, data_2016, data_2017, data_2018, data_2019, 
+        data_2020, data_2021} from './Assets/data'
 
 
 function App() {
-  csv(year_2015, data => console.log(data))
+  const [loading, setLoading] = useState(true);
   const [iteration, setIteration] = useState(1)
   const [start, setStart] = useState(true)
-  const [allData, setAllData] = useState(testData)
-  const [property, setProperty] = useState("pop_est")
-  const [data, setData] = useState(testData[0])
-  
+  const [allCsvFiles] = useState([data_2005, data_2006, data_2007, data_2008, data_2009, 
+                                  data_2010, data_2011, data_2012, data_2013, data_2014, 
+                                  data_2015, data_2016, data_2017, data_2018, data_2019, 
+                                  data_2020, data_2021])
+  const [property, setProperty] = useState("pop_est")  
+  const [countryData, setCountryData] = useState([])
 
+  useEffect(() => {
+   csv(allCsvFiles[iteration]).then((data) => {
+     data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
+     setCountryData(data.slice(0, 10));
+     setLoading(false);
+   })
+  },[iteration, allCsvFiles]);
+  
+  // update the year each 8 seconds
   useInterval(() => {
     if(start) {
-      const nextIndex = iteration % allData.length
-      setData(
-        allData[nextIndex]
-      );
-      setIteration(iteration + 1)
+      const nextIter = (iteration + 1) % allCsvFiles.length
+      setIteration(nextIter)
     }
   }, 8000);
 
@@ -222,11 +47,11 @@ function App() {
       <div class="container">
         <div class="page page-1">
           <h1 class="page-1-title">Which countries are the happiest?</h1>
-          <div class="page-1-chart"> <AnimatedBarChart data={data}/></div>
+          <div class="page-1-chart"> {!loading && <AnimatedBarChart data={countryData}/>} {loading && <div>Loading...</div>}</div>
           <button  onClick={ () => setStart(!start)} >
         {start ? "Pause" : "Start"}
       </button>
-          <h1 class="page-1-text">{2015 + (iteration - 1) % allData.length }</h1>
+          <h1 class="page-1-text">{2005 + (iteration - 1) % allCsvFiles.length }</h1>
         </div>
         <div class="page page-2">
           <div class="page-2-title">Explore</div>

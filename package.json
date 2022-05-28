@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "pleasejs": "^0.4.2",
     "react-d3-library": "^1.1.8"
   }
 }
