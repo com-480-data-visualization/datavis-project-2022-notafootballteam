@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import {csv} from "d3";
 import oh_dist from './Assets/images/oh_dist.png';
