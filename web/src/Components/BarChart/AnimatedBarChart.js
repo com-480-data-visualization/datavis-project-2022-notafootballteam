@@ -1,6 +1,6 @@
 import React, { useRef, useEffect} from "react";
 import {select, scaleBand, scaleLinear, max} from "d3";
-import useResizeObserver from "./useResizeObserver";
+import useResizeObserver from "../../Utils/useResizeObserver";
 
 
 
