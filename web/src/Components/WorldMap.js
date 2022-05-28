@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { select, geoPath, min, max, scaleLinear } from "d3";
-import useResizeObserver from '../../Utils/useResizeObserver'
+import useResizeObserver from '../Utils/useResizeObserver'
 import { geoMercator } from "d3";
 
 const WorldMap = ({data, property}) => {
@@ -14,7 +14,7 @@ const WorldMap = ({data, property}) => {
         const minProp = min(data.features, feature => feature.properties[property])
         const maxProp = max(data.features, feature => feature.properties[property])
 
-        const colorScale = scaleLinear().domain([minProp, maxProp]).range(['#aaa', '#006400'])
+        const colorScale = scaleLinear().domain([minProp, maxProp]).range(['red', 'blue'])
 
 
 
