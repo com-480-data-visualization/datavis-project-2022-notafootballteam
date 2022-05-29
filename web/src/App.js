@@ -6,8 +6,8 @@ import happy_dist from './Assets//images/happy_dist.png';
 import scatter from './Assets/images/scatter.png';
 import radar from './Assets/images/radar.png';
 import useInterval from './Utils/useInterval';
-import AnimatedBarChart from './Components/AnimatedBarChart';
-import WorldMap from './Components/WorldMap';
+import AnimatedBarChart from './Components/BarChart/AnimatedBarChart';
+import WorldMap from './Components/WorldMap/WorldMap';
 import {map_data_2005, map_data_2021} from './Assets/data'
 import {data_2005, data_2006, data_2007, data_2008, data_2009, 
         data_2010, data_2011, data_2012, data_2013, data_2014, 

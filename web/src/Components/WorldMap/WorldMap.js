@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { select, geoPath, min, max, scaleLinear } from "d3";
-import useResizeObserver from '../Utils/useResizeObserver'
+import useResizeObserver from '../../Utils/useResizeObserver'
 import { geoMercator } from "d3";
 
 const WorldMap = ({data, property}) => {

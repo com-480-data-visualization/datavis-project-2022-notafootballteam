@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState} from "react";
 import {select, scaleBand, scaleLinear, max, csv, scalePow} from "d3";
-import useResizeObserver from "../Utils/useResizeObserver";
+import useResizeObserver from "../../Utils/useResizeObserver";
 import Please from "pleasejs"
 
 const getFlagEmoji = (countryCode) => {
