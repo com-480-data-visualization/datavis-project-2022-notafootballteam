@@ -29,7 +29,7 @@ const WorldMap = ({ data, property }) => {
             .data(data.features)
             .join("path")
             .on("mouseenter", (event, feature) => {
-                if (feature && feature.properties['Life Ladder']) {
+                if (feature && feature.properties[property]) {
                     setSelectedCountry(feature);
                 } else {
                     setSelectedCountry(null);
