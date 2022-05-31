@@ -60,7 +60,43 @@ const WorldMap = ({ data, property }) => {
             .attr("x", 10)
             .attr("y", 25);
 
+        const colors = ['red', 'blue'];
 
+        const grad = svg.append('defs')
+            .append('linearGradient')
+            .attr('id', 'grad')
+            .attr('x1', '0%')
+            .attr('x2', '100%')
+            .attr('y1', '0%')
+            .attr('y2', '0%');
+
+        grad.selectAll('stop')
+            .data(colors)
+            .enter()
+            .append('stop')
+            .style('stop-color', (d) => d)
+            .attr('offset', (d, i) => {
+                return 100 * (i / (colors.length - 1)) + '%';
+            })
+
+        svg.append('rect')
+            .attr('x', 40)
+            .attr('y', 400)
+            .attr('width', 100)
+            .attr('height', 20)
+            .attr('stroke', 'black')
+            .attr('fill', 'url(#grad)');
+
+        let legendText = ['Low', 'High']
+        svg
+            .selectAll(".legendText")
+            .data(legendText)
+            .join("text")
+            .attr("class", "labelFact")
+            .text((text) => text)
+            .attr("x", (text, index) => 1 + index * 150)
+            .attr("y", 415)
+            .style('font-size', '13px');
 
 
     }, [data, dimensions, property, selectedCountry]);
