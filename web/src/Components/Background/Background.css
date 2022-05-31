@@ -1,0 +1,18 @@
+#background {
+
+    background-image: linear-gradient(var(--yellow-bg-top), var(--yellow-bg-bottom));
+
+    position: fixed;
+
+    height: 100vh;  /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+    width: 100vw;
+
+    /* Place behind, so we don't interfere with other elements */
+    z-index: -1;
+
+    -webkit-transform:translateZ(-100%);
+    -moz-transform:translateZ(-100%);
+    -o-transform:translateZ(-100%);
+    transform:translateZ(-100%);
+}

@@ -1,0 +1,15 @@
+div.box {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 6vh;
+    
+    /* For separation between boxes */
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+
+    /* To avoid having text near round borders */
+    padding: 1vh 2.5vh 2vh;
+}
+
+div.box > * {
+    /* border-style: dotted; */
+}

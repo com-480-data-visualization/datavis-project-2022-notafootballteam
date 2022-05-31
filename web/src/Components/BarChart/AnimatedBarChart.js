@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, useState} from "react";
 import {select, scaleBand, scaleLinear, max, csv, scalePow} from "d3";
 import useResizeObserver from "../../Utils/useResizeObserver";
-import Please from "pleasejs"
+import Please from "pleasejs";
+
+import './AnimatedBarChart.css';
 
 const getFlagEmoji = (countryCode) => {
     const codePoints = countryCode
@@ -87,11 +89,11 @@ function AnimatedBarChart({data}) {
     }, [data, dimensions]);
 
     return (
-        <div ref={wrapperRef} style={{marginBottom: "2rem"}}>
+        <div id='animated-bar-chart' ref={wrapperRef}>
             <svg ref={svgRef}></svg>
         </div>
     )
 
 }
 
-export default AnimatedBarChart
+export default AnimatedBarChart;

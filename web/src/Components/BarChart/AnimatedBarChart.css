@@ -1,0 +1,9 @@
+#animated-bar-chart {
+    /* border: solid 1px;
+    border-color: rgba(0,0,0,0.5); */
+}
+
+#animated-bar-chart, #animated-bar-chart > svg {
+    height: 100%;
+    width: 100%;
+}
