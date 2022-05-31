@@ -3,20 +3,19 @@ import { select, geoPath, min, max, scaleLinear } from "d3";
 import useResizeObserver from '../../Utils/useResizeObserver'
 import { geoMercator } from "d3";
 
+import './WorldMap.css'
+
 const WorldMap = ({data, property}) => {
     const svgRef = useRef();
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
     const [selectedCountry, setSelectedCountry] = useState(null);
-    
     useEffect(() => {
         const svg = select(svgRef.current);
         const minProp = min(data.features, feature => feature.properties[property])
         const maxProp = max(data.features, feature => feature.properties[property])
 
         const colorScale = scaleLinear().domain([minProp, maxProp]).range(['red', 'blue'])
-
-
 
 
         const {width, height} = dimensions || wrapperRef.current.getBoundingClientRect();

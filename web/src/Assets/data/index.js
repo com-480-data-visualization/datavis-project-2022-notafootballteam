@@ -36,6 +36,25 @@ import data_2019 from './data_2019.csv'
 import data_2020 from './data_2020.csv'
 import data_2021 from './data_2021.csv'
 
+import top_2005 from './top_10_2005.csv'
+import top_2006 from './top_10_2006.csv'
+import top_2007 from './top_10_2007.csv'
+import top_2008 from './top_10_2008.csv'
+import top_2009 from './top_10_2009.csv'
+import top_2010 from './top_10_2010.csv'
+import top_2011 from './top_10_2011.csv'
+import top_2012 from './top_10_2012.csv'
+import top_2013 from './top_10_2013.csv'
+import top_2014 from './top_10_2014.csv'
+import top_2015 from './top_10_2015.csv'
+import top_2016 from './top_10_2016.csv'
+import top_2017 from './top_10_2017.csv'
+import top_2018 from './top_10_2018.csv'
+import top_2019 from './top_10_2019.csv'
+import top_2020 from './top_10_2020.csv'
+import top_2021 from './top_10_2021.csv'
+
+
 
 export {
     map_data_2005,
@@ -71,5 +90,22 @@ export {
     data_2018,
     data_2019,
     data_2020,
-    data_2021
+    data_2021,
+    top_2005,
+    top_2006,
+    top_2007, 
+    top_2008,
+    top_2009,
+    top_2010,
+    top_2011,
+    top_2012,
+    top_2013,
+    top_2014,
+    top_2015,
+    top_2016,
+    top_2017,
+    top_2018,
+    top_2019,
+    top_2020,
+    top_2021,   
 }
