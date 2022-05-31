@@ -18,31 +18,54 @@ import {
 
 import Box from './Components/Box/Box';
 import Background from './Components/Background/Background';
+import TimeSlider from './Components/TimeSlider/TimeSlider';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [iteration, setIteration] = useState(1)
-  const [start, setStart] = useState(false)
-  const [allCsvFiles] = useState([data_2005, data_2006, data_2007, data_2008, data_2009,
-    data_2010, data_2011, data_2012, data_2013, data_2014,
-    data_2015, data_2016, data_2017, data_2018, data_2019,
-    data_2020, data_2021])
-  const [property, setProperty] = useState("pop_est")
-  const [countryData, setCountryData] = useState([])
+  const [start, setStart] = useState(true);
+  const [CSVData] = useState({
+    2005: data_2005,
+    2006: data_2006,
+    2007: data_2007,
+    2008: data_2008,
+    2009: data_2009,
+    2010: data_2010,
+    2011: data_2011,
+    2012: data_2012,
+    2013: data_2013,
+    2014: data_2014,
+    2015: data_2015,
+    2016: data_2016,
+    2017: data_2017,
+    2018: data_2018,
+    2019: data_2019,
+    2020: data_2020,
+    2021: data_2021,
+  });
 
+  const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
+  const [selectedYear, setSelectedYear] = useState(2005);
+  const [top10HappiestData, settop10HappiestData] = useState([]);
+
+  const [property, setProperty] = useState("pop_est");
+
+  // Reload the year's data when selected year changes
   useEffect(() => {
-    csv(allCsvFiles[iteration]).then((data) => {
+    csv(CSVData[selectedYear]).then((data) => {
       data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
-      setCountryData(data.slice(0, 10));
+      settop10HappiestData(data.slice(0, 10));
       setLoading(false);
-    })
-  }, [iteration, allCsvFiles]);
+    });
+  }, [selectedYear]);
 
-  // update the year each 8 seconds
+  // Update the year each 8 seconds
   useInterval(() => {
     if (start) {
-      const nextIter = (iteration + 1) % allCsvFiles.length
-      setIteration(nextIter)
+      if (selectedYear == 2021) {
+        setSelectedYear(2005);
+      } else {
+        setSelectedYear(selectedYear + 1);
+      }
     }
   }, 8000);
 
@@ -57,8 +80,8 @@ function App() {
             <p id='did-you-know-text'>Did you know?</p>
             <p>This will contain info about the yellow color.</p>
           </div>
-          <div className="page-1-year">{2005 + (iteration - 1) % allCsvFiles.length}</div>
-          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={countryData} />} {loading && <div>Loading...</div>}</div>
+          <div className="page-1-year">{selectedYear}</div>
+          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
           <button className='page-1-button' onClick={() => setStart(!start)} >
             {start ? "Pause" : "Start"}
           </button>
@@ -74,16 +97,17 @@ function App() {
           {"Box 4"}
         </Box>
       </div>
+      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} />
       {/* Slider component */}
 
       {/* <div className="container">
         <div className="page page-1">
           <h1 className="page-1-title">Which countries are the happiest?</h1>
-          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={countryData} />} {loading && <div>Loading...</div>}</div>
+          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
           <button onClick={() => setStart(!start)} >
             {start ? "Pause" : "Start"}
           </button>
-          <h1 className="page-1-text">{2005 + (iteration - 1) % allCsvFiles.length}</h1>
+          <h1 className="page-1-text">{2005 + (iteration - 1) % CSVData.length}</h1>
         </div>
         <div className="page page-2">
           <div className="page-2-title">Explore</div>
@@ -112,7 +136,6 @@ function App() {
           <div className="page-3-bottom-right"><img src={radar} /></div>
         </div>
         <div className="page page-4">Fun Animation</div>
-        <div id="timeline-overlay">Timeline to query year</div>
       </div> */}
     </div>
   );

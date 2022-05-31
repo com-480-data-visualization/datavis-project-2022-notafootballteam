@@ -1,0 +1,32 @@
+#time-slider {
+    /* Position and size */
+    position: fixed;
+    
+    left: 5vw;
+    width: 90vw;
+    bottom: 1vh;
+    height: 30px;
+    z-index: 10;
+    /* margin: 90vh 10vw auto; */
+
+    /* Style */
+    border-radius: 1vh;
+    background-color: rgba(0,0,0,0.65); /*dim the background*/
+
+    /* Container properties */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vh 0;
+}
+
+#time-slider > div.time-slider-year {
+    color: white;
+    font-size: 10px;
+}
+
+#time-slider > div.current {
+    color: yellow;
+    font-size: 12px;
+}

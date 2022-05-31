@@ -67,6 +67,9 @@ div.box-container {
     "box-2"
     "box-3"
     "box-4";
+
+  margin-left: 1vh;
+  margin-right: 1vh;
 }
 
 div.box-container > #box-1 {
@@ -159,69 +162,6 @@ div.box-container > div#box-3 {
 div.box-container > div#box-4 {
   grid-area: box-4;
 }
-
-/* .page-1-title {
-  grid-area: title;
-}
-
-.page-1-chart {
-  grid-area: chart;
-}
-
-.page-1-chart > img {
-  height: 40vh;
-}
-
-.page-1-text {
-  grid-area: text;
-} */
-
-/* .page-2-title {
-  grid-area: title;
-}
-
-.page-2-chart {
-  grid-area: chart;
-}
-
-.page-2-chart > img {
-  width: 100%;
-}
-
-.page-2-text {
-  grid-area: text;
-} */
-
-/* .page-3 img {
-  height: 20vh;
-}
-
-.page-3-top-left {
-  grid-area: alc;
-}
-
-.page-3-top-right {
-  grid-area: happy;
-}
-
-.page-3-bottom-left {
-  grid-area: scatterplot;
-}
-
-.page-3-bottom-right {
-  grid-area: radar;
-} */
-
-#timeline-overlay {
-  position: fixed;
-  top: 90vh;
-  left: 20vw;
-  width: 60vw;
-  height: 5vh;
-  z-index: 10;
-  background-color: rgba(0,0,0,0.5); /*dim the background*/
-}
-
 
 /* For desktop: */
 
