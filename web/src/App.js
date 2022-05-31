@@ -53,13 +53,11 @@ function App() {
   const [selectedYear, setSelectedYear] = useState(2005);
   const [top10HappiestData, settop10HappiestData] = useState([]);
 
-  const [property, setProperty] = useState("pop_est");
+  const [property, setProperty] = useState("Life Ladder");
 
   // Reload the year's data when selected year changes
   useEffect(() => {
     csv(CSVData[selectedYear]).then((data) => {
-     // data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
-     console.log(data);
       settop10HappiestData(data);
       setLoading(false);
     });
@@ -95,20 +93,14 @@ function App() {
           <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
         </Box>
         <Box id='box-2'>
-          <WorldMap data={map_data_2005} property={property}/>
+          <WorldMap data={map_data_2005} property={property} />
           <h2>Select property to highlight</h2>
-            <select value={property} onChange={event => setProperty(event.target.value)}>
-              <option value="pop_est" color="red">Population</option>
-              <option value="Life Ladder">Happiness</option>
-              <option value="Log GDP per capita">GDP</option>
-              <option value="Social support">Social support</option>
-              <option value="Healthy life expectancy at birth">Life expectancy</option>
-              <option value="Freedom to make life choices">Freedom to make life choices</option>
-              <option value="Generosity">Generosity</option>
-              <option value="Perceptions of corruption">Perceptions of corruption</option>
-              <option value="Alcohol consumption">Alcohol consumption</option>
-              <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
-            </select>
+          <select value={property} onChange={event => setProperty(event.target.value)}>
+            <option value="Life Ladder">Happiness</option>
+            <option value="Log GDP per capita">GDP</option>
+            <option value="Alcohol consumption">Alcohol consumption</option>
+            <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
+          </select>
         </Box>
         <Box id='box-3'>
           {"Box 3"}
