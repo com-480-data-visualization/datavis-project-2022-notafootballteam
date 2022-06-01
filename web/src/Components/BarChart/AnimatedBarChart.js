@@ -48,7 +48,7 @@ function AnimatedBarChart({ data }) {
             .range([0, dimensions.width])
 
 
-        const START_LOC = dimensions.height + 50
+        const START_LOC = dimensions.height;
         const MAIN_ANIMATION_DURATION = 3000
         const REMOVE_ANIMATION_DURATION = 1000
 
@@ -56,7 +56,7 @@ function AnimatedBarChart({ data }) {
         svg.selectAll(".bar")
             .data(data, (entry, index) => entry['Country name'])
             .join(enter => enter.append("rect").attr("y", START_LOC).transition().duration(REMOVE_ANIMATION_DURATION).attr("y", (entry, index) => yScale(index)), undefined,
-                elemToRemove => elemToRemove.transition().duration(REMOVE_ANIMATION_DURATION).attr("y", START_LOC).style('opacity', 0.3).remove())
+                elemToRemove => elemToRemove.transition().duration(REMOVE_ANIMATION_DURATION).attr("y", START_LOC).style('opacity', 0.1).remove())
             .attr("fill", (entry, index) => `${countryToColorMap[entry['iso_2']].color}`)
             .attr("class", "bar")
             .attr("x", 0)
