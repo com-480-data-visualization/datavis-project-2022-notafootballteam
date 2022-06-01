@@ -24,5 +24,4 @@ export default function ScatterPlot(props) {
             <svg ref={svgRef}></svg>
         </div>
     )
-
 };
