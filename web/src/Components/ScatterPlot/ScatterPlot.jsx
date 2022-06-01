@@ -14,7 +14,7 @@ export default function ScatterPlot(props) {
         const svg = select(svgRef.current)
         if (!dimensions) return;
 
-
+        
 
     }, [props.data, dimensions]);
 

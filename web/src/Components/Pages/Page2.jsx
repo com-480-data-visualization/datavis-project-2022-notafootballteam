@@ -6,8 +6,8 @@ import PlayButton from '../PlayButton/PlayButton';
 import WorldMap from '../WorldMap/WorldMap';
 
 const dictForUserSelect = {
-  "Happiness/GDP cap.": "Happiness/GDP",
-  "Life Ladder": `Happiness ` + String.fromCharCode(0x263A, 0xFE0F),
+  "Happiness/GDP cap.": "Happiness Score over GDP",
+  "Life Ladder": "Happiness Score",
   "Alcohol consumption": "Alcohol consumption",
   "Log GDP per capita": "GDP"
 };

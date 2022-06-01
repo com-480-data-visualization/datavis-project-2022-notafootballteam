@@ -38,7 +38,7 @@ import {
 export default function App() {
 
   const [loading, setLoading] = useState(true);
-  
+
   const [CSVData] = useState({
     2005: data_2005,
     2006: data_2006,
@@ -147,11 +147,12 @@ export default function App() {
           property={property}
           setProperty={setProperty}
           playTime={playTime}
-          setPlayTime={setPlayTime}/>
+          setPlayTime={setPlayTime} />
 
         <Page3 data={CSVData[selectedYear]}
           selectedYear={selectedYear}
-          selectedCountryID={selectedCountryID} />
+          selectedCountryID={selectedCountryID}
+          property={property} />
 
         <Page4 />
 
