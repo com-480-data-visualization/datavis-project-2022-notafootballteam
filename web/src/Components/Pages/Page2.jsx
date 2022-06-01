@@ -4,7 +4,7 @@ import './Page2.css';
 import Box from '../Box/Box';
 import WorldMap from '../WorldMap/WorldMap';
 
-export default function Page1(props) {
+export default function Page2(props) {
   return (
     <Box id='box-2'>
       <h1 className="page-1-title">World Map</h1>

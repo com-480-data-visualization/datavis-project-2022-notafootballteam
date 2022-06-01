@@ -27,14 +27,12 @@ import {
   top_2020, top_2021
 } from './Assets/data';
 
-
-import Box from './Components/Box/Box';
 import Background from './Components/Background/Background';
-
+import TimeSlider from './Components/TimeSlider/TimeSlider';
 import Page1 from './Components/Pages/Page1';
 import Page2 from './Components/Pages/Page2';
-
-import TimeSlider from './Components/TimeSlider/TimeSlider';
+import Page3 from './Components/Pages/Page3';
+import Page4 from './Components/Pages/Page4';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -82,7 +80,7 @@ function App() {
   const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
 
   const [playTime, setPlayTime] = useState(true);
-  
+
   const [top10HappiestData, settop10HappiestData] = useState([]);
 
   // Property
@@ -114,16 +112,21 @@ function App() {
       <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime} />
 
       <div className="box-container">
-        <Page1 playTime={playTime} setPlayTime={setPlayTime} loading={loading} top10HappiestData={top10HappiestData} />
-        <Page2 mapData={MapData[selectedYear]} selectedYear={selectedYear} property={property} setProperty={setProperty} />
-        
-        <Box id='box-3'>
-          <h1>Happiness Dashboard</h1>
-        </Box>
-        <Box id='box-4'>
-          <h1>Fun Animation</h1>
-        </Box>
-        
+
+        <Page1 playTime={playTime}
+          setPlayTime={setPlayTime}
+          loading={loading}
+          top10HappiestData={top10HappiestData} />
+
+        <Page2 mapData={MapData[selectedYear]}
+          selectedYear={selectedYear}
+          property={property}
+          setProperty={setProperty} />
+
+        <Page3 selectedYear={selectedYear} selectedCountryID={selectedCountryID} />
+
+        <Page4 />
+
       </div>
     </div>
   );
