@@ -10,7 +10,7 @@ export default function Page3(props) {
       <h1 className='title'>Country Card</h1>
 
       <div id='country-data'>
-      <h2>Selected_Country_Name</h2>
+      <h2>{props.selectedCountry && props.selectedCountry.properties['iso_a3']}</h2>
         <ul>
           <li>Attribute 1</li>
           <li>Attribute 2</li>

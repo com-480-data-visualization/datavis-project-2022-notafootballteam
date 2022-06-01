@@ -11,8 +11,8 @@
   height: 60vh;
 }
 
-#world-map > svg.country:hover {
-  stroke: yellow;
+svg .country:hover {
+  stroke: black;
   stroke-width: 1px;
   cursor: pointer;
 }

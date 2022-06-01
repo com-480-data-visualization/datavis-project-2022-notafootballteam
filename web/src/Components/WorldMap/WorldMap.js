@@ -42,7 +42,11 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
                 setHoveredCountry(null);
             })
             .on("click", (event, selected) => {
-                setSelectedCountry(selected);
+                if (selectedCountry && selectedCountry.properties['iso_a3'] == selected.properties['iso_a3']) {
+                    setSelectedCountry(null);
+                } else {
+                    setSelectedCountry(selected);
+                }
             })
             .attr("class", "country")
             .style("cursor", "pointer")
@@ -60,6 +64,12 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
 
                     return colorScale(feature.properties[property]);
                 }
+            })
+            .attr("stroke", (feature) => {
+                if (selectedCountry && selectedCountry.properties['iso_a3'] == feature.properties['iso_a3']) {
+                    return "black";
+                }
+                return "none";
             })
             .attr("d", feature => pathGenerator(feature));
 

@@ -37,7 +37,7 @@ div#box-2 > div.page-2-attr-selection {
     margin: 3vh auto;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     grid-template-areas: "text menu";
 }
 
@@ -56,7 +56,7 @@ div#box-2 > div.page-2-attr-selection > div {
 div#box-2 > div.page-2-attr-selection > select {
     grid-area: menu;
 
-    width: 28vw;
+    width: 35vw;
     height: 32px;
     cursor: pointer;
 
