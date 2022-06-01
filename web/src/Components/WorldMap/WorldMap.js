@@ -23,6 +23,7 @@ const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
         const projection = geoMercator().fitSize([width, height], data).precision(100);
 
         const pathGenerator = geoPath().projection(projection);
+        const unknownColor = 'gray';
 
         svg
             .selectAll(".country")
@@ -46,7 +47,7 @@ const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
             .attr("class", "country")
             .style("cursor", "pointer")
             .transition()
-            .attr("fill", feature => colorScale(feature.properties[property]))
+            .attr("fill", feature => feature.properties[property] !== undefined ? colorScale(feature.properties[property]) : unknownColor)
             .attr("d", feature => pathGenerator(feature));
 
         svg
@@ -115,6 +116,8 @@ const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
             .attr('y', 430)
             .attr('width', 20)
             .attr('height', 20)
+            .attr('fill', unknownColor)
+            .attr('stroke', 'black');
 
         svg.selectAll("unknownValueLegendText")
             .data(unknownData)
