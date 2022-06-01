@@ -112,7 +112,8 @@ const WorldMap = ({ data, property }) => {
             .attr('y', 430)
             .attr('width', 20)
             .attr('height', 20)
-            .attr('fill', unknownColor);
+            .attr('fill', unknownColor)
+            .attr('stroke', 'black');
 
         svg.selectAll("unknownValueLegendText")
             .data(unknownData)
