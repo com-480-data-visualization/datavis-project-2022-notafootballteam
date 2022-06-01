@@ -105,6 +105,7 @@ export default function App() {
   const [playTime, setPlayTime] = useState(false);
 
   const [top10HappiestData, settop10HappiestData] = useState([]);
+  const [yearData, setYearData] = useState([]);
 
   // Property
   const [property, setProperty] = useState("Life Ladder");
@@ -113,8 +114,12 @@ export default function App() {
   useEffect(() => {
     csv(CSVDataTop[selectedYear]).then((data) => {
       settop10HappiestData(data);
-      setLoading(false);
+      // setLoading(false);
     });
+    csv(CSVData[selectedYear]).then((data) => {
+      setYearData(data);
+      setLoading(false);
+    })
   }, [selectedYear]);
 
   // Update the year each 8 seconds
@@ -149,6 +154,7 @@ export default function App() {
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
           playTime={playTime}
+          data={yearData}
           setPlayTime={setPlayTime} />
 
         <Page3 data={CSVData[selectedYear]}

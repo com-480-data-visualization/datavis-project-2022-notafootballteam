@@ -4,6 +4,7 @@ import './Page2.css';
 import Box from '../Box/Box';
 import PlayButton from '../PlayButton/PlayButton';
 import WorldMap from '../WorldMap/WorldMap';
+import DistributionPlot from '../DistributionPlot/DistributionPlot';
 
 const dictForUserSelect = {
   "Happiness/GDP cap.": "Happiness/GDP per capita",
@@ -46,6 +47,7 @@ export default function Page2(props) {
 
       <div id='distr-hap'>
         <h2>Distribution of happiness</h2>
+        <DistributionPlot data={props.data} year={props.year} selectedCountry={props.selectedCountry}/>
       </div>
 
       <div id='distr-alc'>
