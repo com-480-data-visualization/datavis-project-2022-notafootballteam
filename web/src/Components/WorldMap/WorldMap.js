@@ -23,6 +23,7 @@ const WorldMap = ({ data, property }) => {
         const projection = geoMercator().fitSize([width, height], data).precision(100);
 
         const pathGenerator = geoPath().projection(projection);
+        const unknownColor = 'gray';
 
         svg
             .selectAll(".country")
@@ -42,7 +43,7 @@ const WorldMap = ({ data, property }) => {
             .on("click", (event, selected) => console.log(`will scroll with country ${selected.properties.name} selected`))
             .attr("class", "country")
             .transition()
-            .attr("fill", feature => colorScale(feature.properties[property]))
+            .attr("fill", feature => feature.properties[property] !== undefined ? colorScale(feature.properties[property]) : unknownColor)
             .attr("d", feature => pathGenerator(feature));
 
         svg
@@ -111,6 +112,7 @@ const WorldMap = ({ data, property }) => {
             .attr('y', 430)
             .attr('width', 20)
             .attr('height', 20)
+            .attr('fill', unknownColor);
 
         svg.selectAll("unknownValueLegendText")
             .data(unknownData)
