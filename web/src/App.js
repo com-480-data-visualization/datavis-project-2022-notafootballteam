@@ -105,13 +105,13 @@ function App() {
       <Background />
       <div className="box-container">
         <Box id='box-1'>
-          <h1 className="page-1-title">Which countries are the happiest?</h1>
+          <h1 className="page-1-title">{"WHAT MAKES COUNTRIES HAPPY?"}</h1>
           <p className="page-1-text-top-left">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis interdum ullamcorper. Aenean quis imperdiet nunc. Nulla vitae imperdiet tellus. Suspendisse ut iaculis sem, id viverra tortor. Nullam a urna vitae justo luctus venenatis. Nullam a aliquet arcu. Suspendisse potenti. Sed quis tortor vitae libero molestie sollicitudin eget congue nisl. Aenean convallis a lectus sed dictum. Curabitur diam odio, rutrum ac interdum quis, congue in sem."}</p>
           <div className="did-you-know">
             <p id='did-you-know-text'>Did you know?</p>
             <p>This will contain info about the yellow color.</p>
           </div>
-          <div className="page-1-year">{selectedYear}</div>
+          <h2 className="page-1-year">{"Ranking by Happiness Score"}</h2>
           <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
           <button className='page-1-button' onClick={() => setPlayTime(!playTime)} >
             {playTime ? "Pause" : "▶️"}
@@ -138,7 +138,6 @@ function App() {
         </Box>
       </div>
       <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime}/>
-      {/* Slider component */}
 
       {/* <div className="container">
         <div className="page page-1">

@@ -10,7 +10,7 @@
     /* margin: 90vh 10vw auto; */
 
     /* Style */
-    border-radius: 2vh;
+    border-radius: 10px;
     background-color: rgba(0,0,0,0.65); /*dim the background*/
 
     /* Container properties */
@@ -25,16 +25,19 @@
     color: white;
     font-size: 10px;
     
-    transition: font-size 0.1s;
+    transition: font-size 0.2s, color 1s;
     cursor: pointer;
-}
-
-#time-slider > div.time-slider-year:hover {
-    font-size: 15px;
 }
 
 #time-slider > div.current {
     color: yellow;
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: font-size 0.5s;
+}
+
+#time-slider > div.time-slider-year:hover {
     font-size: 15px;
 }
 

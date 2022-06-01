@@ -40,16 +40,18 @@ body {
   text-align: center;
 }
 
-h1,h2 {
+h1 {
   text-transform: uppercase;
-  padding-left: 8vh;
-  padding-right: 8vh;
+  /* padding-left: 8vh; */
+  /* padding-right: 8vh; */
+  font-size: 45px;
+  font-weight: 900;
+  margin: auto;
 }
 
-h1 {
-  font-size: 40px;
-  font-weight: 900;
-  margin: auto 0;
+h2 {
+  padding-left: 8vh;
+  padding-right: 8vh;
 }
 
 p {
@@ -89,7 +91,6 @@ div.box-container > #box-1 {
 
 div#box-1 > .page-1-title {
   grid-area: title;
-  margin-bottom: 2vh;
 }
 
 div#box-1 > .page-1-text-top-left {
