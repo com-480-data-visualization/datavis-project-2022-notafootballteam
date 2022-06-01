@@ -118,13 +118,15 @@ function App() {
           <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
         </Box>
         <Box id='box-2'>
+          <h1 className="page-1-title">World Map</h1>
+          <div className="page-1-year">{selectedYear}</div>
           <WorldMap data={MapData[selectedYear]} property={property} />
-          <h2>Select property to highlight</h2>
+          <h2>Select property</h2>
           <select value={property} onChange={event => setProperty(event.target.value)}>
-            <option value="Life Ladder">Happiness</option>
-            <option value="Log GDP per capita">GDP</option>
-            <option value="Alcohol consumption">Alcohol consumption</option>
-            <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
+            <option value="Life Ladder">Happiness 😁</option>
+            <option value="Log GDP per capita">GDP 💸</option>
+            <option value="Alcohol consumption">Alcohol consumption 🍾</option>
+            <option value="Happiness/GDP cap.">Happiness/GDP cap. 🤓</option>
           </select>
         </Box>
         <Box id='box-3'>
