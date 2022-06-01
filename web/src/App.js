@@ -8,7 +8,12 @@ import radar from './Assets/images/radar.png';
 import useInterval from './Utils/useInterval';
 import AnimatedBarChart from './Components/BarChart/AnimatedBarChart';
 import WorldMap from './Components/WorldMap/WorldMap';
-import { map_data_2005, map_data_2021 } from './Assets/data';
+import {
+  map_data_2005, map_data_2006, map_data_2007, map_data_2008, map_data_2009,
+  map_data_2010, map_data_2011, map_data_2012, map_data_2013, map_data_2014,
+  map_data_2015, map_data_2016, map_data_2017, map_data_2018, map_data_2019,
+  map_data_2020, map_data_2021
+} from './Assets/data';
 import {
   data_2005, data_2006, data_2007, data_2008, data_2009,
   data_2010, data_2011, data_2012, data_2013, data_2014,
@@ -47,6 +52,26 @@ function App() {
     2019: top_2019,
     2020: top_2020,
     2021: top_2021,
+  });
+
+  const [MapData] = useState({
+    2005: map_data_2005,
+    2006: map_data_2006,
+    2007: map_data_2007,
+    2008: map_data_2008,
+    2009: map_data_2009,
+    2010: map_data_2010,
+    2011: map_data_2011,
+    2012: map_data_2012,
+    2013: map_data_2013,
+    2014: map_data_2014,
+    2015: map_data_2015,
+    2016: map_data_2016,
+    2017: map_data_2017,
+    2018: map_data_2018,
+    2019: map_data_2019,
+    2020: map_data_2020,
+    2021: map_data_2021,
   });
 
   const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
@@ -93,7 +118,7 @@ function App() {
           <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
         </Box>
         <Box id='box-2'>
-          <WorldMap data={map_data_2005} property={property} />
+          <WorldMap data={MapData[selectedYear]} property={property} />
           <h2>Select property to highlight</h2>
           <select value={property} onChange={event => setProperty(event.target.value)}>
             <option value="Life Ladder">Happiness</option>
