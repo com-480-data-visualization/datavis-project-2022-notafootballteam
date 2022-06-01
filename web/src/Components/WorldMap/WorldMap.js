@@ -5,11 +5,12 @@ import { geoMercator } from "d3";
 
 import './WorldMap.css'
 
-const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
+const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
     const svgRef = useRef();
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
-    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [hoveredCountry, setHoveredCountry] = useState(null);
+
     useEffect(() => {
         const svg = select(svgRef.current);
         const minProp = min(data.features, feature => feature.properties[property])
@@ -31,42 +32,55 @@ const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
             .join("path")
             .on("mouseenter", (event, feature) => {
                 if (feature && feature.properties[property]) {
-                    setSelectedCountry(feature);
+                    setHoveredCountry(feature);
                 } else {
-                    setSelectedCountry(null);
+                    setHoveredCountry(null);
                 }
             })
             .on("mouseleave", () => {
                 svg.select(".labelFact").remove()
-                setSelectedCountry(null);
+                setHoveredCountry(null);
             })
             .on("click", (event, selected) => {
-                setCountrySelected(selected);
-                console.log(selected);
+                setSelectedCountry(selected);
             })
             .attr("class", "country")
             .style("cursor", "pointer")
             .transition()
-            .attr("fill", feature => feature.properties[property] !== undefined ? colorScale(feature.properties[property]) : unknownColor)
+            .attr("fill", feature => {
+                
+                if (feature.properties[property] === undefined) {
+                    return unknownColor;
+                    
+                } else {
+
+                    if (selectedCountry && selectedCountry.properties['iso_a3'] == feature.properties['iso_a3']) {
+                        return "orange";
+                    }
+
+                    return colorScale(feature.properties[property]);
+                }
+            })
             .attr("d", feature => pathGenerator(feature));
 
         svg
             .selectAll(".labelFact")
-            .data([selectedCountry])
+            .data([hoveredCountry])
             .join("text")
             .attr("class", "labelFact")
             .text(
                 feature => {
                     if (feature) {
                         const num = feature.properties[property];
-                        const rounded = Math.round(num * 10) / 10;
+                        const rounded = Math.round(num * 100) / 100;
                         return feature.properties.name + " : " + rounded.toLocaleString()
                     }
                 }
             )
             .attr("x", 10)
             .attr("y", 25)
-            .style('font-size', '15px');
+            .style('font-size', '13px')
+            .style('text-transform', 'uppercase');
 
         const colors = ['black', 'yellow'];
 
@@ -130,7 +144,7 @@ const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
             .style('font-weight', '500')
             .style('text-transform', 'uppercase');
 
-    }, [data, dimensions, property, selectedCountry]);
+    }, [data, dimensions, property, selectedCountry, hoveredCountry]);
 
     return (
         <div id='world-map' ref={wrapperRef} style={{ marginBottom: "2rem" }} >

@@ -20,7 +20,7 @@ export default function Page3(props) {
 
       <ScatterPlot data={props.data}
         selectedYear={props.selectedYear}
-        selectedCountryID={props.selectedCountryID} />
+        selectedCountry={props.selectedCountry} />
 
       <div id='radar-chart'>
         <h2>Radar Chart</h2>

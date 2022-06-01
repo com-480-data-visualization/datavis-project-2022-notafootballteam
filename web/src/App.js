@@ -146,12 +146,14 @@ export default function App() {
           selectedYear={selectedYear}
           property={property}
           setProperty={setProperty}
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
           playTime={playTime}
           setPlayTime={setPlayTime} />
 
         <Page3 data={CSVData[selectedYear]}
           selectedYear={selectedYear}
-          selectedCountryID={selectedCountry}
+          selectedCountry={selectedCountry}
           property={property} />
 
         <Page4 />

@@ -21,7 +21,7 @@ const dictForMapTitle = {
 
 export default function Page2(props) {
 
-  const options = Object.entries(dictForUserSelect).map( function(item) {
+  const options = Object.entries(dictForUserSelect).map(function (item) {
     return (<option key={item[0].toString()} value={item[0]}>{item[1]}</option>);
   });
 
@@ -38,12 +38,16 @@ export default function Page2(props) {
         </select>
       </div>
       <h2 className="page-2-map-title">{mapTitle + ", " + props.selectedYear}</h2>
-      <WorldMap data={props.mapData} property={props.property} />
-      
+
+      <WorldMap data={props.mapData}
+        property={props.property}
+        selectedCountry={props.selectedCountry}
+        setSelectedCountry={props.setSelectedCountry} />
+
       <div id='distr-hap'>
         <h2>Distribution of happiness</h2>
       </div>
-      
+
       <div id='distr-alc'>
         <h2>Distribution of alcohol consumption</h2>
       </div>
