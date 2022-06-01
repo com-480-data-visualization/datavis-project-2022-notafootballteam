@@ -49,15 +49,6 @@ function App() {
 
   const [property, setProperty] = useState("pop_est");
 
-  // Reload the year's data when selected year changes
-  useEffect(() => {
-    csv(CSVData[selectedYear]).then((data) => {
-      data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
-      settop10HappiestData(data.slice(0, 10));
-      setLoading(false);
-    });
-  }, [selectedYear]);
-
   // Update the year each 8 seconds
   useInterval(() => {
     if (start) {
@@ -68,6 +59,15 @@ function App() {
       }
     }
   }, 8000);
+
+  // Reload the year's data when selected year changes
+  useEffect(() => {
+    csv(CSVData[selectedYear]).then((data) => {
+      data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
+      settop10HappiestData(data.slice(0, 10));
+      setLoading(false);
+    });
+  }, [selectedYear]);
 
   return (
     <div className="App">
