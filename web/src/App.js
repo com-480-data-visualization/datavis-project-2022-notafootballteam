@@ -99,10 +99,10 @@ export default function App() {
     2021: map_data_2021,
   });
 
-  const [selectedYear, setSelectedYear] = useState(2005);
-  const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
+  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedCountry, setSelectedCountry] = useState(null); // I checked, null == 0 is false in JS, so we're good
 
-  const [playTime, setPlayTime] = useState(true);
+  const [playTime, setPlayTime] = useState(false);
 
   const [top10HappiestData, settop10HappiestData] = useState([]);
 
@@ -151,7 +151,7 @@ export default function App() {
 
         <Page3 data={CSVData[selectedYear]}
           selectedYear={selectedYear}
-          selectedCountryID={selectedCountryID}
+          selectedCountryID={selectedCountry}
           property={property} />
 
         <Page4 />

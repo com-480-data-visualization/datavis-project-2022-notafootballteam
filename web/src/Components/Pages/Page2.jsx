@@ -39,12 +39,17 @@ export default function Page2(props) {
       </div>
       <h2 className="page-2-map-title">{mapTitle + ", " + props.selectedYear}</h2>
       <WorldMap data={props.mapData} property={props.property} />
+      
+      <div id='distr-hap'>
+        <h2>Distribution of happiness</h2>
+      </div>
+      
+      <div id='distr-alc'>
+        <h2>Distribution of alcohol consumption</h2>
+      </div>
+
       <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)} />
       <p className="page-2-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
     </Box>
   );
 }
-
-// ☺️
-// smiling face
-// Unicode: U+263A U+FE0F, UTF-8: E2 98 BA EF B8 8F

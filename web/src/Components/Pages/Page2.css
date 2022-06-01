@@ -2,16 +2,17 @@ div#box-2 {
     grid-area: box-2;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr auto auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto auto auto 30vh auto auto;
     grid-template-areas:
-      "title title title"
-      "text-top text-top text-top"
-      ". property ."
-      "map-title map-title map-title"
-      "chart chart chart"
-      ". button ."
-      "text-bottom text-bottom text-bottom";
+      "title title"
+      "text-top text-top"
+      "property property"
+      "map-title map-title"
+      "chart chart"
+      "distr-left distr-right"
+      "button button"
+      "text-bottom text-bottom";
 }
 
 div#box-2 > h1.page-2-title {
@@ -72,6 +73,22 @@ div#box-2 > div.page-2-attr-selection > select {
 
 div#box-2 > div#world-map {
     grid-area: chart;
+}
+
+div#box-2 > div#distr-hap {
+    grid-area: distr-left;
+
+    margin-top: 3vh;
+    /* temporary */
+    border: 1px solid gray;
+}
+
+div#box-2 > div#distr-alc {
+    grid-area: distr-right;
+
+    margin-top: 3vh;
+    /* temporary */
+    border: 1px solid gray;
 }
 
 div#box-2 > button.play-button {

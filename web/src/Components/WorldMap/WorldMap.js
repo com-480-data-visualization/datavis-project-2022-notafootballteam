@@ -5,7 +5,7 @@ import { geoMercator } from "d3";
 
 import './WorldMap.css'
 
-const WorldMap = ({ data, property }) => {
+const WorldMap = ({ data, property, countrySelected, setCountrySelected }) => {
     const svgRef = useRef();
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
@@ -39,8 +39,12 @@ const WorldMap = ({ data, property }) => {
                 svg.select(".labelFact").remove()
                 setSelectedCountry(null);
             })
-            .on("click", (event, selected) => console.log(`will scroll with country ${selected.properties.name} selected`))
+            .on("click", (event, selected) => {
+                setCountrySelected(selected);
+                console.log(selected);
+            })
             .attr("class", "country")
+            .style("cursor", "pointer")
             .transition()
             .attr("fill", feature => colorScale(feature.properties[property]))
             .attr("d", feature => pathGenerator(feature));
