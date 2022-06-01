@@ -124,7 +124,7 @@ const WorldMap = ({ data, property }) => {
     }, [data, dimensions, property, selectedCountry]);
 
     return (
-        <div ref={wrapperRef} style={{ marginBottom: "2rem" }} >
+        <div id='world-map' ref={wrapperRef} style={{ marginBottom: "2rem" }} >
             <svg ref={svgRef} />
         </div>
     );

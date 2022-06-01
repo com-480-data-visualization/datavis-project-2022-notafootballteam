@@ -1,3 +1,36 @@
 div#box-3 {
     grid-area: box-3;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 4fr 4fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "title title"
+        "text text"
+        "distr-hap distr-alc"
+        "scatterplot radar";
+}
+
+div#box-3 > * {
+    border: 1px solid lightgray;
+}
+
+div#box-3 > h1 {
+    grid-area: title;
+}
+
+div#box-3 > div#distr-hap {
+    grid-area: distr-hap;
+}
+
+div#box-3 > div#distr-alc {
+    grid-area: distr-alc;
+}
+
+div#box-3 > div#scatter-plot {
+    grid-area: scatterplot;
+}
+
+div#box-3 > div#radar-chart {
+    grid-area: radar;
 }

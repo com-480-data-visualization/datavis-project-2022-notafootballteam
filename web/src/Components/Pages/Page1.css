@@ -3,7 +3,7 @@ div#box-1 {
   
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr auto 4fr auto 2fr;
+    grid-template-rows: 1fr 1fr auto 35vh auto auto;
     grid-template-areas:
       "title title"
       "text-top-left did-you-know"
@@ -50,9 +50,8 @@ div#box-1 {
     margin: 1vh 0 1vh;
   }
   
-  div#box-1 > .page-1-button {
+  div#box-1 > button.play-button {
     grid-area: button;
-    margin: 1.5vh auto 2vh;
   }
   
   div#box-1 > .page-1-text-bottom {

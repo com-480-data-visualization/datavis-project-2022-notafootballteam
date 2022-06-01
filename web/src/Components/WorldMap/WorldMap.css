@@ -1,4 +1,9 @@
-svg {
+#world-map, #world-map > svg {
+  height: 100%;
+  width: 100%;
+}
+
+#world-map > svg {
   overflow: visible;
   display: block;
   /* background: #eee; */
@@ -6,9 +11,8 @@ svg {
   height: 60vh;
 }
 
-svg .country:hover {
+#world-map > svg.country:hover {
   stroke: yellow;
   stroke-width: 1px;
   cursor: pointer;
 }
-

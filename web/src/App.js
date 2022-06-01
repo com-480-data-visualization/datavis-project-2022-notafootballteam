@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import { csv } from "d3";
-import oh_dist from './Assets/images/oh_dist.png';
-import happy_dist from './Assets//images/happy_dist.png';
-import scatter from './Assets/images/scatter.png';
-import radar from './Assets/images/radar.png';
 import useInterval from './Utils/useInterval';
+import { csv } from "d3";
+import './App.css';
 
-import {
-  map_data_2005, map_data_2006, map_data_2007, map_data_2008, map_data_2009,
-  map_data_2010, map_data_2011, map_data_2012, map_data_2013, map_data_2014,
-  map_data_2015, map_data_2016, map_data_2017, map_data_2018, map_data_2019,
-  map_data_2020, map_data_2021
-} from './Assets/data';
+// ------------------------------------------ Components ------------------------------------------
+
+import Background from './Components/Background/Background';
+import TimeSlider from './Components/TimeSlider/TimeSlider';
+import Page1 from './Components/Pages/Page1';
+import Page2 from './Components/Pages/Page2';
+import Page3 from './Components/Pages/Page3';
+import Page4 from './Components/Pages/Page4';
+
+// ------------------------------------------ Data ------------------------------------------
+
 import {
   data_2005, data_2006, data_2007, data_2008, data_2009,
   data_2010, data_2011, data_2012, data_2013, data_2014,
@@ -27,16 +28,36 @@ import {
   top_2020, top_2021
 } from './Assets/data';
 
-import Background from './Components/Background/Background';
-import TimeSlider from './Components/TimeSlider/TimeSlider';
-import Page1 from './Components/Pages/Page1';
-import Page2 from './Components/Pages/Page2';
-import Page3 from './Components/Pages/Page3';
-import Page4 from './Components/Pages/Page4';
+import {
+  map_data_2005, map_data_2006, map_data_2007, map_data_2008, map_data_2009,
+  map_data_2010, map_data_2011, map_data_2012, map_data_2013, map_data_2014,
+  map_data_2015, map_data_2016, map_data_2017, map_data_2018, map_data_2019,
+  map_data_2020, map_data_2021
+} from './Assets/data';
 
-function App() {
+export default function App() {
   const [loading, setLoading] = useState(true);
   const [CSVData] = useState({
+    2005: data_2005,
+    2006: data_2006,
+    2007: data_2007,
+    2008: data_2008,
+    2009: data_2009,
+    2010: data_2010,
+    2011: data_2011,
+    2012: data_2012,
+    2013: data_2013,
+    2014: data_2014,
+    2015: data_2015,
+    2016: data_2016,
+    2017: data_2017,
+    2018: data_2018,
+    2019: data_2019,
+    2020: data_2020,
+    2021: data_2021,
+  });
+
+  const [CSVDataTop] = useState({
     2005: top_2005,
     2006: top_2006,
     2007: top_2007,
@@ -88,7 +109,7 @@ function App() {
 
   // Reload the year's data when selected year changes
   useEffect(() => {
-    csv(CSVData[selectedYear]).then((data) => {
+    csv(CSVDataTop[selectedYear]).then((data) => {
       settop10HappiestData(data);
       setLoading(false);
     });
@@ -122,18 +143,20 @@ function App() {
         <Page2 mapData={MapData[selectedYear]}
           selectedYear={selectedYear}
           property={property}
-          setProperty={setProperty} />
+          setProperty={setProperty}
+          playTime={playTime}
+          setPlayTime={setPlayTime}/>
 
-        <Page3 selectedYear={selectedYear} selectedCountryID={selectedCountryID} />
+        <Page3 data={CSVData}
+          selectedYear={selectedYear}
+          selectedCountryID={selectedCountryID} />
 
         <Page4 />
 
       </div>
     </div>
   );
-}
-
-export default App;
+};
 
 // {/* <div className="container">
       //   <div className="page page-1">

@@ -2,6 +2,7 @@ import React from 'react';
 import './Page1.css';
 
 import Box from '../Box/Box';
+import PlayButton from '../PlayButton/PlayButton';
 import AnimatedBarChart from '../../Components/BarChart/AnimatedBarChart';
 
 export default function Page1(props) {
@@ -15,9 +16,10 @@ export default function Page1(props) {
           </div>
           <h2 className="page-1-chart-title">{"Ranking by Happiness Score (" + props.selectedYear + ")"}</h2>
           <div className="page-1-chart"> {!props.loading && <AnimatedBarChart data={props.top10HappiestData} />} {props.loading && <div>Loading...</div>}</div>
-          <button className='page-1-button' onClick={() => props.setPlayTime(!props.playTime)} >
+          <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)}/>
+          {/* <button className='page-1-button' onClick={() => props.setPlayTime(!props.playTime)} >
             {props.playTime ? "Pause" : "▶️"}
-          </button>
+          </button> */}
           <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
         </Box>
     );

@@ -1,3 +1,77 @@
 div#box-2 {
     grid-area: box-2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 4vh auto auto auto auto auto;
+    grid-template-areas:
+      "title title title"
+      ". year ."
+      "text-top text-top text-top"
+      ". property ."
+      "chart chart chart"
+      ". button ."
+      "text-bottom text-bottom text-bottom";
+}
+
+div#box-2 > h1.page-2-title {
+    grid-area: title;
+}
+
+div#box-2 > div.page-2-year {
+    grid-area: year;
+    margin: auto;
+}
+
+div#box-2 > p.page-2-text-top {
+    grid-area: text-top;
+}
+
+div#box-2 > div.page-2-attr-selection {
+    grid-area: property;
+    margin: 3vh auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "text menu";
+}
+
+div#box-2 > div.page-2-attr-selection > div {
+    grid-area: text;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    color: darkslategray;
+
+    margin: auto;
+    margin-right: 2vh;
+}
+
+div#box-2 > div.page-2-attr-selection > select {
+    grid-area: menu;
+
+    width: 28vw;
+    height: 32px;
+
+    margin: auto;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    color: darkslategray;
+
+    border-radius: 10px;
+}
+
+div#box-2 > div#world-map {
+    grid-area: chart;
+}
+
+div#box-2 > button.play-button {
+    grid-area: button;
+}
+
+div#box-2 > p.page-2-text-bottom {
+    grid-area: text-bottom;
 }

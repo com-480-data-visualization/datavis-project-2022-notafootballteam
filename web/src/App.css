@@ -63,7 +63,7 @@ p {
 
 div.box-container {
   display: grid;
-  grid-template-rows: 100vh 100vh 100vh 100vh;
+  grid-template-rows: auto auto auto auto;
   grid-template-areas:
     "box-1"
     "box-2"
@@ -72,35 +72,6 @@ div.box-container {
 
   width: 97vw;
   margin: 5vh auto;
-}
-
-button {
-  width: 60px;
-  height: 30px;
-  border-radius: 10px;
-
-  /* Text style */
-  font-size: 14px;
-  font-weight: 300;
-
-  /* Button style */
-  background-color: white;
-  color: var(--color-alt-1);
-  font-weight: 600;
-  border: 1px solid;
-  border-color: var(--color-alt-1);
-
-  /* Esthetics */
-  cursor: pointer;
-  transition: font-size 0.1s;
-}
-
-div.box-container > div#box-3 {
-  grid-area: box-3;
-}
-
-div.box-container > div#box-4 {
-  grid-area: box-4;
 }
 
 /* For desktop: */
