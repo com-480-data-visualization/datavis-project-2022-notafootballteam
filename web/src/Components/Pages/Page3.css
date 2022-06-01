@@ -11,11 +11,13 @@ div#box-3 {
 }
 
 div#box-3 > * {
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
 }
 
 div#box-3 > h1 {
     grid-area: title;
+
+    margin-bottom: 3vh;
 }
 
 div#box-3 > div#country-data {

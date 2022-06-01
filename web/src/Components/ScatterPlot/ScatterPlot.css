@@ -4,16 +4,14 @@
 }
 
 #scatter-plot {
-    border: 1px solid blue;
-
     display: grid;
+    
     grid-template-rows: 1fr 5fr;
     grid-template-areas: "title" "svg";
 }
 
 #scatter-plot > h2 {
     grid-area: title;
-    margin: auto;
 }
 
 #scatter-plot > svg {

@@ -49,8 +49,8 @@ function AnimatedBarChart({ data }) {
 
 
         const START_LOC = dimensions.height;
-        const MAIN_ANIMATION_DURATION = 3000
-        const REMOVE_ANIMATION_DURATION = 1000
+        const MAIN_ANIMATION_DURATION = 1250;
+        const REMOVE_ANIMATION_DURATION = 700;
 
         // draw the bars
         svg.selectAll(".bar")
@@ -64,7 +64,9 @@ function AnimatedBarChart({ data }) {
             .transition()
             .duration(MAIN_ANIMATION_DURATION)
             .attr("width", entry => xScale(Math.pow(2, entry['Life Ladder'])))
-            .attr("y", (entry, index) => yScale(index));
+            .attr("y", (entry, index) => yScale(index))
+            .attr("rx", 5)
+            .attr("ry", 5);
 
         // draw the labels 
         svg
@@ -87,7 +89,7 @@ function AnimatedBarChart({ data }) {
             )
             .text(entry => `${countryToColorMap[entry['iso_2']].emoji} ${entry['Country name']}`)
             .attr("class", "label")
-            .attr('x', 10)
+            .attr('x', 15)
             .raise()
             .transition()
             .duration(MAIN_ANIMATION_DURATION)

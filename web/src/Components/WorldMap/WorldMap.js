@@ -24,7 +24,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
         const projection = geoMercator().fitSize([width, height], data).precision(100);
 
         const pathGenerator = geoPath().projection(projection);
-        const unknownColor = 'gray';
+        const unknownColor = '#aaaaaa';
 
         svg
             .selectAll(".country")
@@ -132,7 +132,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
             .style('font-weight', '500')
             .style('text-transform', 'uppercase');
 
-        const unknownData = ['Missing']
+        const unknownData = ['No Data']
         svg.selectAll("unknownValuesLegend")
             .data(unknownData)
             .join("rect")

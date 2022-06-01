@@ -8,6 +8,9 @@ export default function ScatterPlot(props) {
     const wrapperRef = useRef()
     const dimensions = useResizeObserver(wrapperRef)
 
+    
+    const countryData = props.selectedCountry && props.selectedCountry.properties;
+
     // props.data == []
 
     useEffect(() => {

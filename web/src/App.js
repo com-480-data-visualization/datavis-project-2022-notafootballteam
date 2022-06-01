@@ -117,7 +117,7 @@ export default function App() {
     });
   }, [selectedYear]);
 
-  // Update the year each 8 seconds
+  // Update the year each N seconds
   useInterval(() => {
     if (playTime) {
       if (selectedYear === 2021) {
@@ -126,7 +126,7 @@ export default function App() {
         setSelectedYear(selectedYear + 1);
       }
     }
-  }, 8000);
+  }, 3000);
 
   return (
     <div className="App">
@@ -162,41 +162,3 @@ export default function App() {
     </div>
   );
 };
-
-// {/* <div className="container">
-      //   <div className="page page-1">
-      //     <h1 className="page-1-title">Which countries are the happiest?</h1>
-      //     <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
-      //     <button onClick={() => setStart(!start)} >
-      //       {start ? "Pause" : "Start"}
-      //     </button>
-      //     <h1 className="page-1-text">{2005 + (iteration - 1) % CSVData.length}</h1>
-      //   </div>
-      //   <div className="page page-2">
-      //     <div className="page-2-title">Explore</div>
-      //     <div className="page-2-chart">
-      //       <WorldMap data={map_data_2021} property={property} />
-      //       <h2>Select property to highlight</h2>
-      //       <select value={property} onChange={event => setProperty(event.target.value)}>
-      //         <option value="pop_est" color="red">Population</option>
-      //         <option value="Life Ladder">Happiness</option>
-      //         <option value="Log GDP per capita">GDP</option>
-      //         <option value="Social support">Social support</option>
-      //         <option value="Healthy life expectancy at birth">Life expectancy</option>
-      //         <option value="Freedom to make life choices">Freedom to make life choices</option>
-      //         <option value="Generosity">Generosity</option>
-      //         <option value="Perceptions of corruption">Perceptions of corruption</option>
-      //         <option value="Alcohol consumption">Alcohol consumption</option>
-      //         <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
-      //       </select>
-      //     </div>
-      //     <div className="page-2-text">By clickling on a country on the map above, the user will go down to the next page and view stats about the country.</div>
-      //   </div>
-      //   <div className="page page-3">
-      //     <div className="page-3-top-left"><img src={oh_dist} /></div>
-      //     <div className="page-3-top-right"><img src={happy_dist} /></div>
-      //     <div className="page-3-bottom-left"><img src={scatter} /></div>
-      //     <div className="page-3-bottom-right"><img src={radar} /></div>
-      //   </div>
-      //   <div className="page page-4">Fun Animation</div>
-      // </div> */}
