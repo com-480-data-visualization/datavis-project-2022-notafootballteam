@@ -15,7 +15,7 @@ const WorldMap = ({ data, property }) => {
         const minProp = min(data.features, feature => feature.properties[property])
         const maxProp = max(data.features, feature => feature.properties[property])
 
-        const colorScale = scaleLinear().domain([minProp, maxProp]).range(['red', 'blue'])
+        const colorScale = scaleLinear().domain([minProp, maxProp]).range(['black', 'yellow'])
 
 
         const { width, height } = dimensions || wrapperRef.current.getBoundingClientRect();
@@ -63,7 +63,7 @@ const WorldMap = ({ data, property }) => {
             .attr("y", 25)
             .style('font-size', '15px');
 
-        const colors = ['red', 'blue'];
+        const colors = ['black', 'yellow'];
 
         const grad = svg.append('defs')
             .append('linearGradient')
@@ -99,7 +99,9 @@ const WorldMap = ({ data, property }) => {
             .text((text) => text)
             .attr("x", (text, index) => 1 + index * 150)
             .attr("y", 415)
-            .style('font-size', '13px');
+            .style('font-size', '11px')
+            .style('font-weight', '500')
+            .style('text-transform', 'uppercase');
 
         const unknownData = ['Missing']
         svg.selectAll("unknownValuesLegend")
@@ -117,9 +119,9 @@ const WorldMap = ({ data, property }) => {
             .attr('x', 70)
             .attr('y', 445)
             .text(text => text)
-            .style('font-size', '13px');
-
-
+            .style('font-size', '11px')
+            .style('font-weight', '500')
+            .style('text-transform', 'uppercase');
 
     }, [data, dimensions, property, selectedCountry]);
 

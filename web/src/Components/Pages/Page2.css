@@ -21,6 +21,9 @@ div#box-2 > h1.page-2-title {
 div#box-2 > div.page-2-year {
     grid-area: year;
     margin: auto;
+
+    font-weight: 800;
+    color: darkslategray;
 }
 
 div#box-2 > p.page-2-text-top {
@@ -38,6 +41,7 @@ div#box-2 > div.page-2-attr-selection {
 
 div#box-2 > div.page-2-attr-selection > div {
     grid-area: text;
+
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 800;
