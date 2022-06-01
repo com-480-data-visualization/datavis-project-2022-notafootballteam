@@ -1,5 +1,5 @@
-import React from 'react'
-import './TimeSlider.css'
+import React from 'react';
+import './TimeSlider.css';
 import { getYearRange } from '../../Utils/utils.js';
 
 export default function TimeSlider(props) {

@@ -6,8 +6,7 @@ import happy_dist from './Assets//images/happy_dist.png';
 import scatter from './Assets/images/scatter.png';
 import radar from './Assets/images/radar.png';
 import useInterval from './Utils/useInterval';
-import AnimatedBarChart from './Components/BarChart/AnimatedBarChart';
-import WorldMap from './Components/WorldMap/WorldMap';
+
 import {
   map_data_2005, map_data_2006, map_data_2007, map_data_2008, map_data_2009,
   map_data_2010, map_data_2011, map_data_2012, map_data_2013, map_data_2014,
@@ -27,8 +26,14 @@ import {
   top_2015, top_2016, top_2017, top_2018, top_2019,
   top_2020, top_2021
 } from './Assets/data';
+
+
 import Box from './Components/Box/Box';
 import Background from './Components/Background/Background';
+
+import Page1 from './Components/Pages/Page1';
+import Page2 from './Components/Pages/Page2';
+
 import TimeSlider from './Components/TimeSlider/TimeSlider';
 
 function App() {
@@ -73,12 +78,14 @@ function App() {
     2021: map_data_2021,
   });
 
-  const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
-  
-  const [playTime, setPlayTime] = useState(true);
   const [selectedYear, setSelectedYear] = useState(2005);
+  const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
+
+  const [playTime, setPlayTime] = useState(true);
+  
   const [top10HappiestData, settop10HappiestData] = useState([]);
 
+  // Property
   const [property, setProperty] = useState("Life Ladder");
 
   // Reload the year's data when selected year changes
@@ -102,82 +109,62 @@ function App() {
 
   return (
     <div className="App">
+
       <Background />
+      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime} />
+
       <div className="box-container">
-        <Box id='box-1'>
-          <h1 className="page-1-title">{"WHAT MAKES COUNTRIES HAPPY?"}</h1>
-          <p className="page-1-text-top-left">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis interdum ullamcorper. Aenean quis imperdiet nunc. Nulla vitae imperdiet tellus. Suspendisse ut iaculis sem, id viverra tortor. Nullam a urna vitae justo luctus venenatis. Nullam a aliquet arcu. Suspendisse potenti. Sed quis tortor vitae libero molestie sollicitudin eget congue nisl. Aenean convallis a lectus sed dictum. Curabitur diam odio, rutrum ac interdum quis, congue in sem."}</p>
-          <div className="did-you-know">
-            <p id='did-you-know-text'>Did you know?</p>
-            <p>This will contain info about the yellow color.</p>
-          </div>
-          <h2 className="page-1-year">{"Ranking by Happiness Score"}</h2>
-          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
-          <button className='page-1-button' onClick={() => setPlayTime(!playTime)} >
-            {playTime ? "Pause" : "▶️"}
-          </button>
-          <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
-        </Box>
-        <Box id='box-2'>
-          <h1 className="page-1-title">World Map</h1>
-          <div className="page-1-year">{selectedYear}</div>
-          <WorldMap data={MapData[selectedYear]} property={property} />
-          <h2>Select property</h2>
-          <select value={property} onChange={event => setProperty(event.target.value)}>
-            <option value="Life Ladder">Happiness 😁</option>
-            <option value="Log GDP per capita">GDP 💸</option>
-            <option value="Alcohol consumption">Alcohol consumption 🍾</option>
-            <option value="Happiness/GDP cap.">Happiness/GDP cap. 🤓</option>
-          </select>
-        </Box>
+        <Page1 playTime={playTime} setPlayTime={setPlayTime} loading={loading} top10HappiestData={top10HappiestData} />
+        <Page2 mapData={MapData[selectedYear]} selectedYear={selectedYear} property={property} setProperty={setProperty} />
+        
         <Box id='box-3'>
-          {"Box 3"}
+          <h1>Happiness Dashboard</h1>
         </Box>
         <Box id='box-4'>
-          {"Box 4"}
+          <h1>Fun Animation</h1>
         </Box>
+        
       </div>
-      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime}/>
-
-      {/* <div className="container">
-        <div className="page page-1">
-          <h1 className="page-1-title">Which countries are the happiest?</h1>
-          <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
-          <button onClick={() => setStart(!start)} >
-            {start ? "Pause" : "Start"}
-          </button>
-          <h1 className="page-1-text">{2005 + (iteration - 1) % CSVData.length}</h1>
-        </div>
-        <div className="page page-2">
-          <div className="page-2-title">Explore</div>
-          <div className="page-2-chart">
-            <WorldMap data={map_data_2021} property={property} />
-            <h2>Select property to highlight</h2>
-            <select value={property} onChange={event => setProperty(event.target.value)}>
-              <option value="pop_est" color="red">Population</option>
-              <option value="Life Ladder">Happiness</option>
-              <option value="Log GDP per capita">GDP</option>
-              <option value="Social support">Social support</option>
-              <option value="Healthy life expectancy at birth">Life expectancy</option>
-              <option value="Freedom to make life choices">Freedom to make life choices</option>
-              <option value="Generosity">Generosity</option>
-              <option value="Perceptions of corruption">Perceptions of corruption</option>
-              <option value="Alcohol consumption">Alcohol consumption</option>
-              <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
-            </select>
-          </div>
-          <div className="page-2-text">By clickling on a country on the map above, the user will go down to the next page and view stats about the country.</div>
-        </div>
-        <div className="page page-3">
-          <div className="page-3-top-left"><img src={oh_dist} /></div>
-          <div className="page-3-top-right"><img src={happy_dist} /></div>
-          <div className="page-3-bottom-left"><img src={scatter} /></div>
-          <div className="page-3-bottom-right"><img src={radar} /></div>
-        </div>
-        <div className="page page-4">Fun Animation</div>
-      </div> */}
     </div>
   );
 }
 
 export default App;
+
+// {/* <div className="container">
+      //   <div className="page page-1">
+      //     <h1 className="page-1-title">Which countries are the happiest?</h1>
+      //     <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
+      //     <button onClick={() => setStart(!start)} >
+      //       {start ? "Pause" : "Start"}
+      //     </button>
+      //     <h1 className="page-1-text">{2005 + (iteration - 1) % CSVData.length}</h1>
+      //   </div>
+      //   <div className="page page-2">
+      //     <div className="page-2-title">Explore</div>
+      //     <div className="page-2-chart">
+      //       <WorldMap data={map_data_2021} property={property} />
+      //       <h2>Select property to highlight</h2>
+      //       <select value={property} onChange={event => setProperty(event.target.value)}>
+      //         <option value="pop_est" color="red">Population</option>
+      //         <option value="Life Ladder">Happiness</option>
+      //         <option value="Log GDP per capita">GDP</option>
+      //         <option value="Social support">Social support</option>
+      //         <option value="Healthy life expectancy at birth">Life expectancy</option>
+      //         <option value="Freedom to make life choices">Freedom to make life choices</option>
+      //         <option value="Generosity">Generosity</option>
+      //         <option value="Perceptions of corruption">Perceptions of corruption</option>
+      //         <option value="Alcohol consumption">Alcohol consumption</option>
+      //         <option value="Happiness/GDP cap.">Happiness/GDP cap.</option>
+      //       </select>
+      //     </div>
+      //     <div className="page-2-text">By clickling on a country on the map above, the user will go down to the next page and view stats about the country.</div>
+      //   </div>
+      //   <div className="page page-3">
+      //     <div className="page-3-top-left"><img src={oh_dist} /></div>
+      //     <div className="page-3-top-right"><img src={happy_dist} /></div>
+      //     <div className="page-3-bottom-left"><img src={scatter} /></div>
+      //     <div className="page-3-bottom-right"><img src={radar} /></div>
+      //   </div>
+      //   <div className="page page-4">Fun Animation</div>
+      // </div> */}

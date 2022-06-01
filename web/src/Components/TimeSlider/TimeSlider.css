@@ -10,8 +10,8 @@
     /* margin: 90vh 10vw auto; */
 
     /* Style */
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.65); /*dim the background*/
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.95); /*dim the background*/
 
     /* Container properties */
     display: flex;
@@ -22,23 +22,24 @@
 }
 
 #time-slider > div.time-slider-year {
-    color: white;
+    color: darkslategrey;
     font-size: 10px;
+    font-weight: 500;
     
     transition: font-size 0.2s, color 1s;
     cursor: pointer;
 }
 
 #time-slider > div.current {
-    color: yellow;
-    font-size: 15px;
+    color: black;
+    font-size: 18px;
     font-weight: 700;
 
     transition: font-size 0.5s;
 }
 
 #time-slider > div.time-slider-year:hover {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 #time-slider > button {
@@ -48,7 +49,7 @@
     
     border: none;
 
-    color: var(--yellow-bg-top);
+    color: darkslategrey;
     background-color: transparent;
 
     transition: font-size 0.1s;
