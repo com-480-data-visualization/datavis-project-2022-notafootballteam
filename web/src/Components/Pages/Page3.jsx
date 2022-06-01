@@ -10,8 +10,12 @@ export default function Page3(props) {
       <h1 className='title'>Happiness Dashboard</h1>
       <div id='distr-hap'>Distribution of happiness</div>
       <div id='distr-alc'>Distribution of alcohol consumption</div>
-      <ScatterPlot />
+
+      <ScatterPlot data={props.data}
+        selectedYear={props.selectedYear}
+        selectedCountryID={props.selectedCountryID} />
+
       <div id='radar-chart'>Radar Chart</div>
     </Box>
   );
-}
+};

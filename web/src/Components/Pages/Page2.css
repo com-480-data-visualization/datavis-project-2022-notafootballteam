@@ -3,12 +3,12 @@ div#box-2 {
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 4vh auto auto auto auto auto;
+    grid-template-rows: 1fr auto auto auto auto auto auto;
     grid-template-areas:
       "title title title"
-      ". year ."
       "text-top text-top text-top"
       ". property ."
+      "map-title map-title map-title"
       "chart chart chart"
       ". button ."
       "text-bottom text-bottom text-bottom";
@@ -18,9 +18,9 @@ div#box-2 > h1.page-2-title {
     grid-area: title;
 }
 
-div#box-2 > div.page-2-year {
-    grid-area: year;
-    margin: auto;
+div#box-2 > h2.page-2-map-title {
+    grid-area: map-title;
+    margin: 2vh auto;
 
     font-weight: 800;
     color: darkslategray;
@@ -32,6 +32,7 @@ div#box-2 > p.page-2-text-top {
 
 div#box-2 > div.page-2-attr-selection {
     grid-area: property;
+    
     margin: 3vh auto;
 
     display: grid;
@@ -56,6 +57,7 @@ div#box-2 > div.page-2-attr-selection > select {
 
     width: 28vw;
     height: 32px;
+    cursor: pointer;
 
     margin: auto;
 

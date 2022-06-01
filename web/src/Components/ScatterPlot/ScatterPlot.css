@@ -1,4 +1,22 @@
-#scatterplot, #scatterplot > svg {
+#scatter-plot, #scatter-plot > svg {
     height: 100%;
     width: 100%;
+}
+
+#scatter-plot {
+    border: 1px solid blue;
+
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas: "title" "svg";
+}
+
+#scatter-plot > h2 {
+    grid-area: title;
+    margin: auto;
+}
+
+#scatter-plot > svg {
+    grid-area: svg;
+    border: 1px solid green;
 }

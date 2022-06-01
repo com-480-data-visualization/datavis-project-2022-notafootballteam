@@ -8,12 +8,19 @@ export default function ScatterPlot(props) {
     const wrapperRef = useRef()
     const dimensions = useResizeObserver(wrapperRef)
 
+    // props.data == []
+
     useEffect(() => {
-        
+        const svg = select(svgRef.current)
+        if (!dimensions) return;
+
+
+
     }, [props.data, dimensions]);
 
     return (
         <div id='scatter-plot' ref={wrapperRef}>
+            <h2>Scatterplot</h2>
             <svg ref={svgRef}></svg>
         </div>
     )
