@@ -53,12 +53,15 @@ const WorldMap = ({ data, property }) => {
             .text(
                 feature => {
                     if (feature) {
-                        return feature.properties.name + ": " + feature.properties[property].toLocaleString()
+                        const num = feature.properties[property];
+                        const rounded = Math.round(num * 10) / 10;
+                        return feature.properties.name + " : " + rounded.toLocaleString()
                     }
                 }
             )
             .attr("x", 10)
-            .attr("y", 25);
+            .attr("y", 25)
+            .style('font-size', '15px');
 
         const colors = ['red', 'blue'];
 
@@ -92,11 +95,30 @@ const WorldMap = ({ data, property }) => {
             .selectAll(".legendText")
             .data(legendText)
             .join("text")
-            .attr("class", "labelFact")
+            .attr("class", "legendText")
             .text((text) => text)
             .attr("x", (text, index) => 1 + index * 150)
             .attr("y", 415)
             .style('font-size', '13px');
+
+        const unknownData = ['Missing']
+        svg.selectAll("unknownValuesLegend")
+            .data(unknownData)
+            .join("rect")
+            .attr('x', 40)
+            .attr('y', 430)
+            .attr('width', 20)
+            .attr('height', 20)
+
+        svg.selectAll("unknownValueLegendText")
+            .data(unknownData)
+            .join('text')
+            .attr('class', 'legendText')
+            .attr('x', 70)
+            .attr('y', 445)
+            .text(text => text)
+            .style('font-size', '13px');
+
 
 
     }, [data, dimensions, property, selectedCountry]);
