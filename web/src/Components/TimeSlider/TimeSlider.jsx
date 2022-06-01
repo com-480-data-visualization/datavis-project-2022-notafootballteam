@@ -25,6 +25,9 @@ export default function TimeSlider(props) {
 
     return (
         <div id='time-slider'>
+            <button onClick={() => props.handleButtonClick(!props.playTime)}>
+                {props. playTime ? "Pause" : "▶️"}
+            </button>
             {yearDivs}
         </div>
     )

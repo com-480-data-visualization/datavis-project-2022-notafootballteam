@@ -1,9 +1,8 @@
 div.box {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 4vh;
     
     /* For separation between boxes */
-    margin-top: 1vh;
     margin-bottom: 4vh;
 
     /* To avoid having text near round borders */

@@ -8,7 +8,12 @@ import radar from './Assets/images/radar.png';
 import useInterval from './Utils/useInterval';
 import AnimatedBarChart from './Components/BarChart/AnimatedBarChart';
 import WorldMap from './Components/WorldMap/WorldMap';
-import { map_data_2005, map_data_2021 } from './Assets/data';
+import {
+  map_data_2005, map_data_2006, map_data_2007, map_data_2008, map_data_2009,
+  map_data_2010, map_data_2011, map_data_2012, map_data_2013, map_data_2014,
+  map_data_2015, map_data_2016, map_data_2017, map_data_2018, map_data_2019,
+  map_data_2020, map_data_2021
+} from './Assets/data';
 import {
   data_2005, data_2006, data_2007, data_2008, data_2009,
   data_2010, data_2011, data_2012, data_2013, data_2014,
@@ -16,58 +21,84 @@ import {
   data_2020, data_2021
 } from './Assets/data';
 
+import {
+  top_2005, top_2006, top_2007, top_2008, top_2009,
+  top_2010, top_2011, top_2012, top_2013, top_2014,
+  top_2015, top_2016, top_2017, top_2018, top_2019,
+  top_2020, top_2021
+} from './Assets/data';
 import Box from './Components/Box/Box';
 import Background from './Components/Background/Background';
 import TimeSlider from './Components/TimeSlider/TimeSlider';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [start, setStart] = useState(true);
   const [CSVData] = useState({
-    2005: data_2005,
-    2006: data_2006,
-    2007: data_2007,
-    2008: data_2008,
-    2009: data_2009,
-    2010: data_2010,
-    2011: data_2011,
-    2012: data_2012,
-    2013: data_2013,
-    2014: data_2014,
-    2015: data_2015,
-    2016: data_2016,
-    2017: data_2017,
-    2018: data_2018,
-    2019: data_2019,
-    2020: data_2020,
-    2021: data_2021,
+    2005: top_2005,
+    2006: top_2006,
+    2007: top_2007,
+    2008: top_2008,
+    2009: top_2009,
+    2010: top_2010,
+    2011: top_2011,
+    2012: top_2012,
+    2013: top_2013,
+    2014: top_2014,
+    2015: top_2015,
+    2016: top_2016,
+    2017: top_2017,
+    2018: top_2018,
+    2019: top_2019,
+    2020: top_2020,
+    2021: top_2021,
+  });
+
+  const [MapData] = useState({
+    2005: map_data_2005,
+    2006: map_data_2006,
+    2007: map_data_2007,
+    2008: map_data_2008,
+    2009: map_data_2009,
+    2010: map_data_2010,
+    2011: map_data_2011,
+    2012: map_data_2012,
+    2013: map_data_2013,
+    2014: map_data_2014,
+    2015: map_data_2015,
+    2016: map_data_2016,
+    2017: map_data_2017,
+    2018: map_data_2018,
+    2019: map_data_2019,
+    2020: map_data_2020,
+    2021: map_data_2021,
   });
 
   const [selectedCountryID, setSelectedCountryID] = useState(null); // I checked, null == 0 is false in JS, so we're good
+  
+  const [playTime, setPlayTime] = useState(true);
   const [selectedYear, setSelectedYear] = useState(2005);
   const [top10HappiestData, settop10HappiestData] = useState([]);
 
-  const [property, setProperty] = useState("pop_est");
+  const [property, setProperty] = useState("Life Ladder");
+
+  // Reload the year's data when selected year changes
+  useEffect(() => {
+    csv(CSVData[selectedYear]).then((data) => {
+      settop10HappiestData(data);
+      setLoading(false);
+    });
+  }, [selectedYear]);
 
   // Update the year each 8 seconds
   useInterval(() => {
-    if (start) {
-      if (selectedYear == 2021) {
+    if (playTime) {
+      if (selectedYear === 2021) {
         setSelectedYear(2005);
       } else {
         setSelectedYear(selectedYear + 1);
       }
     }
   }, 8000);
-
-  // Reload the year's data when selected year changes
-  useEffect(() => {
-    csv(CSVData[selectedYear]).then((data) => {
-      data.sort((a, b) => b['Life Ladder'] - a['Life Ladder']);
-      settop10HappiestData(data.slice(0, 10));
-      setLoading(false);
-    });
-  }, [selectedYear]);
 
   return (
     <div className="App">
@@ -82,13 +113,22 @@ function App() {
           </div>
           <div className="page-1-year">{selectedYear}</div>
           <div className="page-1-chart"> {!loading && <AnimatedBarChart data={top10HappiestData} />} {loading && <div>Loading...</div>}</div>
-          <button className='page-1-button' onClick={() => setStart(!start)} >
-            {start ? "Pause" : "Start"}
+          <button className='page-1-button' onClick={() => setPlayTime(!playTime)} >
+            {playTime ? "Pause" : "▶️"}
           </button>
           <p className="page-1-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>
         </Box>
         <Box id='box-2'>
-          {"Box 2"}
+          <h1 className="page-1-title">World Map</h1>
+          <div className="page-1-year">{selectedYear}</div>
+          <WorldMap data={MapData[selectedYear]} property={property} />
+          <h2>Select property</h2>
+          <select value={property} onChange={event => setProperty(event.target.value)}>
+            <option value="Life Ladder">Happiness 😁</option>
+            <option value="Log GDP per capita">GDP 💸</option>
+            <option value="Alcohol consumption">Alcohol consumption 🍾</option>
+            <option value="Happiness/GDP cap.">Happiness/GDP cap. 🤓</option>
+          </select>
         </Box>
         <Box id='box-3'>
           {"Box 3"}
@@ -97,7 +137,7 @@ function App() {
           {"Box 4"}
         </Box>
       </div>
-      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} />
+      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime}/>
       {/* Slider component */}
 
       {/* <div className="container">

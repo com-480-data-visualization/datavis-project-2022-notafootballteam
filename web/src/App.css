@@ -68,8 +68,8 @@ div.box-container {
     "box-3"
     "box-4";
 
-  margin-left: 1vh;
-  margin-right: 1vh;
+  width: 97vw;
+  margin: 5vh auto;
 }
 
 div.box-container > #box-1 {
@@ -135,16 +135,24 @@ div#box-1 > .page-1-text-bottom {
 }
 
 button {
-  width: 120px;
-  height: 35px;
-  border-radius: 1vw;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
 
-  background-color: var(--color-alt-1);
-  color: white;
+  /* Text style */
+  font-size: 14px;
+  font-weight: 300;
+
+  /* Button style */
+  background-color: white;
+  color: var(--color-alt-1);
   font-weight: 600;
-  border: none;
+  border: 1px solid;
+  border-color: var(--color-alt-1);
 
+  /* Esthetics */
   cursor: pointer;
+  transition: font-size 0.1s;
 }
 
 div#box-1 > .page-1-text {
@@ -167,7 +175,6 @@ div.box-container > div#box-4 {
 
 @media only screen and (min-width: 768px) {
   div.box-container {
-    margin-left: 10vw;
-    margin-right: 10vw;
+    max-width: 900px;
   }
 }

@@ -10,7 +10,7 @@
     /* margin: 90vh 10vw auto; */
 
     /* Style */
-    border-radius: 1vh;
+    border-radius: 2vh;
     background-color: rgba(0,0,0,0.65); /*dim the background*/
 
     /* Container properties */
@@ -18,15 +18,39 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2vh 0;
+    padding: 0 4vh 0;
 }
 
 #time-slider > div.time-slider-year {
     color: white;
     font-size: 10px;
+    
+    transition: font-size 0.1s;
+    cursor: pointer;
+}
+
+#time-slider > div.time-slider-year:hover {
+    font-size: 15px;
 }
 
 #time-slider > div.current {
     color: yellow;
-    font-size: 12px;
+    font-size: 15px;
+}
+
+#time-slider > button {
+    width: 50px;
+    height: 25px;
+    font-size: 15px;
+    
+    border: none;
+
+    color: var(--yellow-bg-top);
+    background-color: transparent;
+
+    transition: font-size 0.1s;
+}
+
+#time-slider > button:hover {
+    font-size: 18px;
 }
