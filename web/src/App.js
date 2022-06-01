@@ -113,7 +113,8 @@ function App() {
 
       <div className="box-container">
 
-        <Page1 playTime={playTime}
+        <Page1 selectedYear={selectedYear}
+          playTime={playTime}
           setPlayTime={setPlayTime}
           loading={loading}
           top10HappiestData={top10HappiestData} />

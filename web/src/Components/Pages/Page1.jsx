@@ -13,7 +13,7 @@ export default function Page1(props) {
             <p id='did-you-know-text'>Did you know?</p>
             <p>This will contain info about the yellow color.</p>
           </div>
-          <h2 className="page-1-chart-title">{"Ranking by Happiness Score"}</h2>
+          <h2 className="page-1-chart-title">{"Ranking by Happiness Score (" + props.selectedYear + ")"}</h2>
           <div className="page-1-chart"> {!props.loading && <AnimatedBarChart data={props.top10HappiestData} />} {props.loading && <div>Loading...</div>}</div>
           <button className='page-1-button' onClick={() => props.setPlayTime(!props.playTime)} >
             {props.playTime ? "Pause" : "▶️"}
