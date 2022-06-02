@@ -105,28 +105,11 @@ export default function App() {
   const [playTime, setPlayTime] = useState(false);
 
   const [top10HappiestData, settop10HappiestData] = useState([]);
-  const [yearData, setYearData] = useState([]);
+  // const [yearData, setYearData] = useState([]);
 
   // Property
   const DEFAULT_PROPERTY = "Life Ladder";
   const [property, setProperty] = useState(DEFAULT_PROPERTY);
-
-  // Reload data when selected year changes
-  useEffect(() => {
-
-    let loadAll = csv(CSVData[selectedYear]).then((data) => {
-      setYearData(data);
-    });
-
-    let loadTop = csv(CSVDataTop[selectedYear]).then((data) => {
-      settop10HappiestData(data);
-    });
-
-    Promise.all([loadAll, loadTop])
-      .then(() => setLoading(false))
-      .catch((err) => console.log(err));
-
-  }, [selectedYear]);
 
   // Update the year each N seconds
   useInterval(() => {
@@ -138,6 +121,18 @@ export default function App() {
       }
     }
   }, 3000);
+
+  // Update selected country's source data when the seleted year changes
+  useEffect(() => {
+    if (!selectedCountry) return;
+
+    console.log(MapData[selectedYear].features);
+
+    setSelectedCountry(MapData[selectedYear].features.find(
+      (feature) => feature.properties['iso_a3'] === selectedCountry.properties['iso_a3'])
+    );
+
+  }, [selectedYear]);
 
   return (
     <div className="App">
@@ -162,7 +157,6 @@ export default function App() {
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
           playTime={playTime}
-          data={yearData}
           setPlayTime={setPlayTime} />
 
         <Page3

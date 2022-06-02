@@ -86,7 +86,7 @@ div#country-data > div.table-row {
     grid-row-end: span 1;
 
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 2fr;
     grid-template-rows: 3fr 2fr;
     grid-template-areas: 
         "key value"
