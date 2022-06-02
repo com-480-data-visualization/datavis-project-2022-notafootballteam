@@ -2,7 +2,7 @@ div#box-3 {
     grid-area: box-3;
 
     display: grid;
-    grid-template-rows: auto 5vh auto 40vh;
+    grid-template-rows: auto 5vh auto 50vh;
     grid-template-columns: 2fr 1fr;
     grid-template-areas:
         "title title"

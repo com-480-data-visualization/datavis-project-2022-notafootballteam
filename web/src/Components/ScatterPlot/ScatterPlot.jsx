@@ -58,7 +58,7 @@ export default function ScatterPlot(props) {
 
         const yScale = scaleLinear()
             .domain([MIN_Y_AXIS, MAX_Y_AXIS])
-            .range([height - SVG_OFFSET, SVG_OFFSET]);
+            .range([height - SVG_OFFSET * 1.25, SVG_OFFSET /2]);
 
         // console.log(data);
 
@@ -146,7 +146,7 @@ export default function ScatterPlot(props) {
         // });
 
         svg.select(".x-axis")
-            .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
+            .attr("transform", "translate(0, " + (height - SVG_OFFSET * 1.25) + ")")
             .call(axisBottom(xScale));
 
         svg.select(".y-axis")
@@ -175,27 +175,27 @@ export default function ScatterPlot(props) {
             .data([axis_names[0]])
             .join("text")
             .attr('class', 'axis-x-label')
-            .attr('x', width / 2 - 30)
-            .attr('y', height - SVG_OFFSET/2)
+            .attr('x', width / 2)
+            .attr('y', height - 5)
             .attr('text-anchor', 'middle')
             .style('font-size', 15)
-            .text('X axis name');
+            .text(property.toUpperCase());
 
         // Y axis name
         svg.selectAll('.axis-y-label')
         .data([axis_names[1]])
         .join("text")
         .attr("class", "axis-y-label")
-        .attr('transform', 'translate(60,' + height + ')rotate(-90)')
+        .attr('transform', 'translate(' + 10 + ', ' + height/2 + ')rotate(-90)')
         .attr('text-anchor', 'middle')
         .style('font-size', 12)
-        .text('Y axis name');
+        .text('HAPPINESS SCORE');
 
     }, [data, dimensions, props.selectedCountry, props.property]);
 
     return (
         <div id='scatter-plot'>
-            <h2>Scatterplot</h2>
+            <h2>Global Chart</h2>
             <div ref={wrapperRef}>
                 <svg ref={svgRef}>
                     <g className="x-axis axis" />
