@@ -45,14 +45,23 @@ export default function Page2(props) {
         selectedCountry={props.selectedCountry}
         setSelectedCountry={props.setSelectedCountry} />
 
-      <div id='distr-hap'>
-        <h2>Distribution of happiness</h2>
-        <DistributionPlot data={props.data} year={props.year} selectedCountry={props.selectedCountry}/>
-      </div>
+      <DistributionPlot
+        id={'distr-hap'}
+        data={props.mapData}
+        onProperty={'Life Ladder'}
+        year={props.year}
+        selectedCountry={props.selectedCountry}
+        color={'#24a0ed'}
+      />
 
-      <div id='distr-alc'>
-        <h2>Distribution of alcohol consumption</h2>
-      </div>
+      <DistributionPlot
+        id={'distr-alc'}
+        data={props.mapData}
+        onProperty={'Alcohol consumption'}
+        year={props.year}
+        selectedCountry={props.selectedCountry}
+        color={'#24a0ed'}
+      />
 
       <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)} />
       <p className="page-2-text-bottom">{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis tempor tellus vitae placerat. Integer cursus nibh ex, a convallis neque venenatis ac. Praesent quam magna, auctor at consectetur bibendum, lobortis at tellus. Donec faucibus eget ligula eu pretium. Nam sed volutpat orci. Nulla turpis odio, posuere et imperdiet id, varius sit amet ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam nec consectetur justo. Vestibulum hendrerit, mauris in mattis pretium, nunc lectus tempor ex, eget vehicula dui dui id nunc. Proin vitae lacinia lectus. Morbi luctus ultricies ligula. Quisque semper augue enim, sit."}</p>

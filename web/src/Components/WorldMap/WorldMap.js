@@ -158,7 +158,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
     }, [data, dimensions, property, selectedCountry, hoveredCountry]);
 
     return (
-        <div id='world-map' ref={wrapperRef} style={{ marginBottom: "2rem" }} >
+        <div id='world-map' ref={wrapperRef} >
             <svg ref={svgRef} />
         </div>
     );

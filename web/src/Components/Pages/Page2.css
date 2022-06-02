@@ -3,7 +3,7 @@ div#box-2 {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto auto auto auto auto auto auto;
+    grid-template-rows: 1fr auto auto auto auto 35vh auto auto;
     grid-template-areas:
       "title title"
       "text-top text-top"
@@ -79,8 +79,7 @@ div#box-2 > div#distr-hap {
     grid-area: distr-left;
 
     margin-top: 3vh;
-    /* temporary */
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
 }
 
 div#box-2 > div#distr-alc {
@@ -88,7 +87,7 @@ div#box-2 > div#distr-alc {
 
     margin-top: 3vh;
     /* temporary */
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
 }
 
 div#box-2 > button.play-button {

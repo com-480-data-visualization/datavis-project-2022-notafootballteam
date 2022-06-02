@@ -1,68 +1,73 @@
 import React, { useRef, useEffect } from "react";
-import { select, bin, scaleLinear, axisBottom, axisLeft, max, min, scaleBand } from "d3";
+import { select, bin, range, scaleLinear, axisBottom, axisLeft, max, min, scaleBand } from "d3";
 import useResizeObserver from "../../Utils/useResizeObserver";
 import './DistributionPlot.css';
 
-const DistributionPlot = ({ data, selectedCountry, year }) => {
+const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty}) => {
+
     const svgRef = useRef();
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
 
+    const OFFSET = 20;
 
     useEffect(() => {
         const svg = select(svgRef.current);
         if (!dimensions) return;
 
         // prepare the data
-        var histogram = bin().thresholds([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-        const hapData = data.map(c => c['Life Ladder']);
+        const THRESHOLDS = [2, 3, 4, 5, 6, 7, 8, 9];
+
+        const histogram = bin().thresholds(THRESHOLDS);
+        console.log(data);
+        const hapData = data.features.map(c => c.properties[onProperty]);
         var buckets = histogram(hapData);
-
-        console.log(buckets);
-
 
         const width = dimensions.width;
         const height = dimensions.height;
 
-        const maxBins = max(buckets, d => d.length);
-        const minLadderScore = min(buckets.map(arr => min(arr)));
-        const maxLadderScore = max(buckets.map(arr => max(arr)));
+        const maxBinElems = max(buckets, d => d.length);
 
+        const dictMinX = {
+            'Life Ladder': 2,
+            'Alcohol consumption': 0
+        };
 
-        const OFFSET = 20;
+        const dictMaxX = {
+            'Life Ladder': 9,
+            'Alcohol consumption': 16
+        };
 
-        const xScale = scaleLinear().domain([0, 10]).range([0, width - OFFSET]);
-        const yScale = scaleLinear().domain([0, maxBins]).range([height - OFFSET, OFFSET]);
+        const xScale = scaleLinear().domain([dictMinX[onProperty], dictMaxX[onProperty]]).range([OFFSET, width - OFFSET]);
+        const yScale = scaleLinear().domain([0, maxBinElems]).range([height - OFFSET, OFFSET]);
 
-        // const test = buckets.map((d, index) => index * Math.max(0, xScale(d.x1) - xScale(d.x0) - 1));
-        // console.log(test);
-
-
-        svg
-            .selectAll("rect")
+        svg.selectAll("rect")
             .data(buckets)
             .join("rect")
             .attr('class', 'dist-bar')
-            .attr("fill", 'darkgreen')
-            .attr("x", (d, index) => index * Math.max(0, xScale(d.x1) - xScale(d.x0) - 1))
-            .attr("width", d => Math.max(0, xScale(d.x1) - xScale(d.x0) - 1))
+            .attr("fill", color)
+            .attr('stroke', 'darkslategray')
+            .attr("x", (d, i) => xScale(Math.floor(d.x0)))
             .attr("y", d => yScale(d.length))
+            .attr('rx', 2)
+            .attr("width", xScale(3) - xScale(2))
             .attr("height", d => yScale(0) - yScale(d.length));
 
-        // svg.append("g").call(axisBottom(xScale).ticks(buckets.length))
         svg.select(".x-axis")
-            .attr("transform", "translate(0, " + (0) + ")")
-            .call(axisBottom(xScale).ticks(buckets.length));
+            .attr("transform", "translate(" + 0 + "," + (height - OFFSET) + ")")
+            .call(axisBottom(xScale).ticks(8));
 
 
-    }, [data, selectedCountry, year, dimensions]);
+    }, [data, selectedCountry, year, dimensions, onProperty]);
 
     return (
-        <div id='distribution-plot' ref={wrapperRef}>
-            <svg ref={svgRef}>
-                <g className="x-axis" />
-                <g className="y-axis" />
-            </svg>
+        <div id={id} className={'distr-plot'}>
+            <h2>Distribution of happiness</h2>
+            <div ref={wrapperRef}>
+                <svg ref={svgRef}>
+                    <g className="x-axis" />
+                </svg>
+            </div>
         </div>
     )
 };
