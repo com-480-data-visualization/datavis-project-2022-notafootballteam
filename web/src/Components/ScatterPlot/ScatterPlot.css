@@ -16,5 +16,11 @@
 
 #scatter-plot > svg {
     grid-area: svg;
-    border: 1px solid red;
+
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+#scatter-plot text {
+    font-size: 10px;
 }

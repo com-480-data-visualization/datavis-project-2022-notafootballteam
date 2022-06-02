@@ -105,16 +105,26 @@ export default function App() {
   const [playTime, setPlayTime] = useState(false);
 
   const [top10HappiestData, settop10HappiestData] = useState([]);
+  const [yearData, setYearData] = useState([]);
 
   // Property
   const [property, setProperty] = useState("Life Ladder");
 
-  // Reload the year's data when selected year changes
+  // Reload data when selected year changes
   useEffect(() => {
-    csv(CSVDataTop[selectedYear]).then((data) => {
-      settop10HappiestData(data);
-      setLoading(false);
+
+    let loadAll = csv(CSVData[selectedYear]).then((data) => {
+      setYearData(data);
     });
+
+    let loadTop = csv(CSVDataTop[selectedYear]).then((data) => {
+      settop10HappiestData(data);
+    });
+
+    Promise.all([loadAll, loadTop])
+      .then(() => setLoading(false))
+      .catch((err) => console.log(err));
+
   }, [selectedYear]);
 
   // Update the year each N seconds
@@ -136,13 +146,16 @@ export default function App() {
 
       <div className="box-container">
 
-        <Page1 selectedYear={selectedYear}
+        <Page1
+          data={top10HappiestData}
+          selectedYear={selectedYear}
           playTime={playTime}
           setPlayTime={setPlayTime}
           loading={loading}
-          top10HappiestData={top10HappiestData} />
+        />
 
-        <Page2 mapData={MapData[selectedYear]}
+        <Page2
+          mapData={MapData[selectedYear]}
           selectedYear={selectedYear}
           property={property}
           setProperty={setProperty}
@@ -151,7 +164,7 @@ export default function App() {
           playTime={playTime}
           setPlayTime={setPlayTime} />
 
-        <Page3 data={CSVData[selectedYear]}
+        <Page3 data={yearData}
           selectedYear={selectedYear}
           selectedCountry={selectedCountry}
           property={property} />

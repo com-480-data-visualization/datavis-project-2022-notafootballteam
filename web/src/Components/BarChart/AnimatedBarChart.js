@@ -47,7 +47,6 @@ function AnimatedBarChart({ data }) {
             .domain([0, max(data, entry => Math.pow(2, 8))])
             .range([0, dimensions.width])
 
-
         const START_LOC = dimensions.height;
         const MAIN_ANIMATION_DURATION = 1250;
         const REMOVE_ANIMATION_DURATION = 700;
