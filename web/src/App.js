@@ -124,16 +124,17 @@ export default function App() {
 
   // Update selected and top 10 happiest data upon year change
   useEffect(() => {
+
+    csv(CSVDataTop[selectedYear]).then((data) => {
+      settop10HappiestData(data);
+      setLoading(false);
+    });
+
     if (!selectedCountry) return;
 
     setSelectedCountry(MapData[selectedYear].features.find(
       (feature) => feature.properties['iso_a3'] == selectedCountry.properties['iso_a3'])
     );
-
-    csv(CSVDataTop[selectedYear]).then((data) => {
-      settop10HappiestData(data);
-    }).then(() => setLoading(false))
-      .catch((err) => console.log(err));
 
   }, [selectedYear]);
 
