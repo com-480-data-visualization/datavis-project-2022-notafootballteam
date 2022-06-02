@@ -37,22 +37,33 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }
         const histogram = bin().thresholds(THRESHOLDS);
         const hapData = data.features.map(c => c.properties[onProperty]);
 
+
+
         const buckets = histogram(hapData);
         const maxBinElems = max(buckets, d => d.length);
 
         const xScale = scaleLinear().domain([minThresh, maxThresh]).range([OFFSET, width - OFFSET]);
         const yScale = scaleLinear().domain([0, maxBinElems]).range([height - OFFSET, OFFSET]);
 
+        // if (selectedCountry)
+        //     console.log(xScale(selectedCountry.properties[onProperty]));
+
         svg.selectAll("rect")
             .data(buckets)
             .join("rect")
             .attr('class', 'dist-bar')
-            .attr("fill", color)
             .attr('stroke', 'darkslategray')
             .attr("x", (d, i) => xScale(Math.floor(d.x0)))
-            .attr("y", d => yScale(d.length))
+            .style("transform", "scale(1, -1)")
+            .attr("y", d => - height + OFFSET)
             .attr('rx', 2)
             .attr("width", xScale(3) - xScale(2))
+            .transition()
+            .attr("fill", (d, index) => {
+                if (selectedCountry && d.includes(selectedCountry.properties[onProperty]))
+                    return "orange"
+                return color
+            })
             .attr("height", d => yScale(0) - yScale(d.length));
 
         svg.select(".x-axis")
