@@ -16,20 +16,18 @@
 
 #scatter-plot > svg {
     grid-area: svg;
-    /* overflow: visible; */
-
-    /* display: block; */
-    /* background: #eee; */
     width: 100%;
-    height: 60vh;
+    height: 100%;
   }
 
-/* #scatter-plot > div {
+#scatter-plot > div {
     grid-area: svg;
+
+    height: 100%;
 
     border: 1px solid gray;
     border-radius: 10px;
-} */
+}
 
 #scatter-plot text.country-flag:hover {
     opacity: 0.3;
@@ -37,6 +35,6 @@
 }
 
 #scatter-plot .axis text {
-    font-size: 10px;
+    font-size: 14px;
     font-family: inherit;
 }

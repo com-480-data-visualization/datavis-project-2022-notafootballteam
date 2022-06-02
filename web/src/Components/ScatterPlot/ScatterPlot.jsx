@@ -8,16 +8,16 @@ import { getFlagEmoji } from '../../Utils/utils.js';
 
 export default function ScatterPlot(props) {
 
-    const SVG_OFFSET = 25;
+    const SVG_OFFSET = 40;
 
     const MIN_Y_AXIS = 1;
     const MAX_Y_AXIS = 9;
 
     const Y_PROPERTY = 'Life Ladder';
 
-    const svgRef = useRef()
-    const wrapperRef = useRef()
-    const dimensions = useResizeObserver(wrapperRef)
+    const svgRef = useRef();
+    const wrapperRef = useRef();
+    const dimensions = useResizeObserver(wrapperRef);
 
     const data = props.data.features;
     const selectedCountry = props.selectedCountry && props.selectedCountry.properties;
@@ -41,7 +41,7 @@ export default function ScatterPlot(props) {
 
     const maxXMap = {
         'Log GDP per capita': 12,
-        'Alcohol consumption': 10 // TODO: determine best value
+        'Alcohol consumption': 20
     }
 
     useEffect(() => {
@@ -74,9 +74,9 @@ export default function ScatterPlot(props) {
             .transition()
             .attr('r', (d, i) => {
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
-                    return '10px';
+                    return 10;
                 } else {
-                    return '6px';
+                    return 6;
                 }
             });
 
@@ -150,7 +150,7 @@ export default function ScatterPlot(props) {
             .call(axisBottom(xScale));
 
         svg.select(".y-axis")
-            .attr("transform", "translate(25, 0)")
+            .attr("transform", "translate(" + SVG_OFFSET + ", 0)")
             .call(axisLeft(yScale));
 
         // svg.append("g")
@@ -166,10 +166,14 @@ export default function ScatterPlot(props) {
         //     .exit()
         //     .remove();
 
+
+        // TODO: enable without re-render issue (@Mohamed)
+
         // X axis name
         // svg.append('text')
+        //     .attr('class', 'axis-x-label')
         //     .attr('x', width / 2 - 30)
-        //     .attr('y', height + 150)
+        //     .attr('y', height - SVG_OFFSET/2)
         //     .attr('text-anchor', 'middle')
         //     .style('font-size', 15)
         //     .text('X axis name');
@@ -184,11 +188,14 @@ export default function ScatterPlot(props) {
     }, [data, dimensions, props.selectedCountry, props.property]);
 
     return (
-        <div id='scatter-plot' ref={wrapperRef}>
+        <div id='scatter-plot'>
             <h2>Scatterplot</h2>
-            <div>
-                <svg ref={svgRef} />
+            <div ref={wrapperRef}>
+                <svg ref={svgRef}>
+                    <g className="x-axis axis" />
+                    <g className="y-axis axis" />
+                </svg>
             </div>
         </div>
     )
-};
+}

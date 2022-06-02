@@ -2,7 +2,7 @@ div#box-3 {
     grid-area: box-3;
 
     display: grid;
-    grid-template-rows: auto auto auto 40vh;
+    grid-template-rows: auto 5vh auto 40vh;
     grid-template-columns: 2fr 1fr;
     grid-template-areas:
         "title title"
@@ -22,7 +22,7 @@ div#box-3>h1 {
 
 div#box-3>h2 {
     grid-area: country-name;
-    margin: 1vh auto;
+    margin: auto;
     font-size: 24px;
 }
 
@@ -127,7 +127,6 @@ div#country-data div.table-value {
 
 div#box-3>div#scatter-plot {
     grid-area: scatterplot;
-    border: 1px solid gray;
 }
 
 div#box-3>div#radar-chart {
