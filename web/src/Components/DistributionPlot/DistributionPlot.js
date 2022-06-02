@@ -3,7 +3,7 @@ import { select, bin, range, scaleLinear, axisBottom, axisLeft, max, min, scaleB
 import useResizeObserver from "../../Utils/useResizeObserver";
 import './DistributionPlot.css';
 
-const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty}) => {
+const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }) => {
 
     const svgRef = useRef();
     const wrapperRef = useRef();
@@ -15,30 +15,32 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty})
         const svg = select(svgRef.current);
         if (!dimensions) return;
 
-        // prepare the data
-        const THRESHOLDS = [2, 3, 4, 5, 6, 7, 8, 9];
-
-        const histogram = bin().thresholds(THRESHOLDS);
-        console.log(data);
-        const hapData = data.features.map(c => c.properties[onProperty]);
-        var buckets = histogram(hapData);
-
         const width = dimensions.width;
         const height = dimensions.height;
 
-        const maxBinElems = max(buckets, d => d.length);
-
         const dictMinX = {
-            'Life Ladder': 2,
+            'Life Ladder': 1,
             'Alcohol consumption': 0
         };
 
         const dictMaxX = {
             'Life Ladder': 9,
-            'Alcohol consumption': 16
+            'Alcohol consumption': 20
         };
 
-        const xScale = scaleLinear().domain([dictMinX[onProperty], dictMaxX[onProperty]]).range([OFFSET, width - OFFSET]);
+        // prepare the data
+        const minThresh = dictMinX[onProperty];
+        const maxThresh = dictMaxX[onProperty];
+        const THRESHOLDS = range(minThresh, maxThresh + 1); // e.g. [2, 3, 4, 5, 6, 7, 8, 9];
+        console.log(THRESHOLDS);
+
+        const histogram = bin().thresholds(THRESHOLDS);
+        const hapData = data.features.map(c => c.properties[onProperty]);
+
+        const buckets = histogram(hapData);
+        const maxBinElems = max(buckets, d => d.length);
+
+        const xScale = scaleLinear().domain([minThresh, maxThresh]).range([OFFSET, width - OFFSET]);
         const yScale = scaleLinear().domain([0, maxBinElems]).range([height - OFFSET, OFFSET]);
 
         svg.selectAll("rect")
@@ -55,14 +57,14 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty})
 
         svg.select(".x-axis")
             .attr("transform", "translate(" + 0 + "," + (height - OFFSET) + ")")
-            .call(axisBottom(xScale).ticks(8));
+            .call(axisBottom(xScale).ticks(THRESHOLDS.length));
 
 
     }, [data, selectedCountry, year, dimensions, onProperty]);
 
     return (
         <div id={id} className={'distr-plot'}>
-            <h2>Distribution of happiness</h2>
+            <h2>Distribution of {onProperty == 'Life Ladder' ? "Happiness" : "Alcohol Consumption"}</h2>
             <div ref={wrapperRef}>
                 <svg ref={svgRef}>
                     <g className="x-axis" />
