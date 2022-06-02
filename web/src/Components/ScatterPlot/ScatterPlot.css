@@ -1,8 +1,3 @@
-#scatter-plot, #scatter-plot svg {
-    height: 100%;
-    width: 100%;
-}
-
 #scatter-plot {
     display: grid;
     
@@ -10,16 +5,31 @@
     grid-template-areas: "title" "svg";
 }
 
+#scatter-plot, #scatter-plot svg {
+    height: 100%;
+    width: 100%;
+}
+
 #scatter-plot > h2 {
     grid-area: title;
 }
 
-#scatter-plot > div {
+#scatter-plot > svg {
+    grid-area: svg;
+    /* overflow: visible; */
+
+    /* display: block; */
+    /* background: #eee; */
+    width: 100%;
+    height: 60vh;
+  }
+
+/* #scatter-plot > div {
     grid-area: svg;
 
     border: 1px solid gray;
     border-radius: 10px;
-}
+} */
 
 #scatter-plot text.country-flag:hover {
     opacity: 0.3;

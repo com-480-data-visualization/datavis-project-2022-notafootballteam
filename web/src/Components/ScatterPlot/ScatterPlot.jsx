@@ -106,16 +106,15 @@ export default function ScatterPlot(props) {
             .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
             .on("click", (event, country) => {
                 if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === country.properties['iso_a3']) {
-                    console.log("here")
                     props.setSelectedCountry(null);
                 } else {
                     props.setSelectedCountry(country);
                 }
             })
             .style('opacity', (d, i) => {
-                console.log("I RAN");
+                // console.log("I RAN");
                 if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
-                    console.log("set to 1");
+                    // console.log("set to 1");
                     return '1';
                 } else {
                    // console.log("set to 0.3")
@@ -179,11 +178,11 @@ export default function ScatterPlot(props) {
     }, [data, dimensions, props.selectedCountry, props.property]);
 
     return (
-        <div id='scatter-plot'>
+        <div id='scatter-plot' ref={wrapperRef}>
             <h2>Scatterplot</h2>
-            <div ref={wrapperRef}>
+            {/* <div > */}
                 <svg ref={svgRef}/>
-            </div>
+            {/* </div> */}
         </div>
     )
 };
