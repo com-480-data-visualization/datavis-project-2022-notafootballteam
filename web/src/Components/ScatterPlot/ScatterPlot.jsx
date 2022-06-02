@@ -169,21 +169,27 @@ export default function ScatterPlot(props) {
 
         // TODO: enable without re-render issue (@Mohamed)
 
-        // X axis name
-        // svg.append('text')
-        //     .attr('class', 'axis-x-label')
-        //     .attr('x', width / 2 - 30)
-        //     .attr('y', height - SVG_OFFSET/2)
-        //     .attr('text-anchor', 'middle')
-        //     .style('font-size', 15)
-        //     .text('X axis name');
+        const axis_names = ["X axis name", "Y axis name"]
+        //X axis name
+        svg.selectAll('.axis-x-label')
+            .data([axis_names[0]])
+            .join("text")
+            .attr('class', 'axis-x-label')
+            .attr('x', width / 2 - 30)
+            .attr('y', height - SVG_OFFSET/2)
+            .attr('text-anchor', 'middle')
+            .style('font-size', 15)
+            .text('X axis name');
 
-        // // Y axis name
-        // svg.append('text')
-        // .attr('transform', 'translate(60,' + height + ')rotate(-90)')
-        // .attr('text-anchor', 'middle')
-        // .style('font-size', 12)
-        // .text('Y axis name');
+        // Y axis name
+        svg.selectAll('.axis-y-label')
+        .data([axis_names[1]])
+        .join("text")
+        .attr("class", "axis-y-label")
+        .attr('transform', 'translate(60,' + height + ')rotate(-90)')
+        .attr('text-anchor', 'middle')
+        .style('font-size', 12)
+        .text('Y axis name');
 
     }, [data, dimensions, props.selectedCountry, props.property]);
 
