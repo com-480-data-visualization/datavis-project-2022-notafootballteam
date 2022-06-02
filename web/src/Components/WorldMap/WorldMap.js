@@ -59,7 +59,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
 
                 } else {
 
-                    if (selectedCountry && selectedCountry.properties['iso_a3'] == feature.properties['iso_a3']) {
+                    if (selectedCountry && selectedCountry.properties['iso_a3'] === feature.properties['iso_a3']) {
                         return "orange";
                     }
 
@@ -67,8 +67,8 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
                 }
             })
             .attr("stroke", (feature) => {
-                if (selectedCountry && selectedCountry.properties['iso_a3'] == feature.properties['iso_a3']) {
-                    return "black";
+                if (selectedCountry && selectedCountry.properties['iso_a3'] === feature.properties['iso_a3']) {
+                    return "orange";
                 }
                 return "none";
             })
