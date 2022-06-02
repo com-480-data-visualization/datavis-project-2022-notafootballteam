@@ -163,6 +163,7 @@ export default function App() {
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
           playTime={playTime}
+          data={yearData}
           setPlayTime={setPlayTime} />
 
         <Page3
