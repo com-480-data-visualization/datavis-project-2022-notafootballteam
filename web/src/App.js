@@ -122,15 +122,18 @@ export default function App() {
     }
   }, 3000);
 
-  // Update selected country's source data when the seleted year changes
+  // Update selected and top 10 happiest data upon year change
   useEffect(() => {
     if (!selectedCountry) return;
 
-    console.log(MapData[selectedYear].features);
-
     setSelectedCountry(MapData[selectedYear].features.find(
-      (feature) => feature.properties['iso_a3'] === selectedCountry.properties['iso_a3'])
+      (feature) => feature.properties['iso_a3'] == selectedCountry.properties['iso_a3'])
     );
+
+    csv(CSVDataTop[selectedYear]).then((data) => {
+      settop10HappiestData(data);
+    }).then(() => setLoading(false))
+      .catch((err) => console.log(err));
 
   }, [selectedYear]);
 
