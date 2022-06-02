@@ -46,16 +46,17 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
                     setSelectedCountry(null);
                 } else {
                     setSelectedCountry(selected);
+                    console.log(selected)
                 }
             })
             .attr("class", "country")
             .style("cursor", "pointer")
             .transition()
             .attr("fill", feature => {
-                
+
                 if (feature.properties[property] === undefined) {
                     return unknownColor;
-                    
+
                 } else {
 
                     if (selectedCountry && selectedCountry.properties['iso_a3'] == feature.properties['iso_a3']) {

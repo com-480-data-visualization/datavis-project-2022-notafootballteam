@@ -165,9 +165,11 @@ export default function App() {
           playTime={playTime}
           setPlayTime={setPlayTime} />
 
-        <Page3 data={yearData}
+        <Page3
           selectedYear={selectedYear}
           selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          mapData={MapData[selectedYear]}
           property={property} />
 
         <Page4 />

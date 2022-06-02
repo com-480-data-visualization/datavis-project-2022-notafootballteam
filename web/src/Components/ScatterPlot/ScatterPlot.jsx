@@ -24,7 +24,7 @@ export default function ScatterPlot(props) {
     const wrapperRef = useRef()
     const dimensions = useResizeObserver(wrapperRef)
 
-    const data = props.data;
+    const data = props.data.features;
     const selectedCountry = props.selectedCountry && props.selectedCountry.properties;
 
     let property = props.property;
@@ -51,8 +51,6 @@ export default function ScatterPlot(props) {
 
     useEffect(() => {
 
-        console.log(`useEffect() run with selectedCountry set to ${selectedCountry}`);
-
         const svg = select(svgRef.current)
         if (!dimensions) return;
 
@@ -67,36 +65,65 @@ export default function ScatterPlot(props) {
             .domain([MIN_Y_AXIS, MAX_Y_AXIS])
             .range([height - SVG_OFFSET, SVG_OFFSET]);
 
+           // console.log(data);
+
         // Clippath circles
         svg.selectAll('clipPath')
             .attr('class', 'clipPath')
             .data(data)
-            .enter()
-            .append('clipPath')
+            .join('clipPath')
             .attr('id', (d, i) => 'clipPath-' + i)
             .append('circle')
-            .attr('cx', (d, i) => xScale(d[property]))
-            .attr('cy', (d, i) => yScale(d[Y_PROPERTY]))
+            .attr('cx', (d, i) => xScale(d.properties[property]))
+            .attr('cy', (d, i) => yScale(d.properties[Y_PROPERTY]))
             .attr('r', (d, i) => {
-                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? 10 : 6;
+                return (selectedCountry && selectedCountry['iso_a3'] == d.properties['iso_a3']) ? 10 : 6;
             });
 
         if (selectedCountry) console.log("selectedCountry['iso_a3']: ", selectedCountry['iso_a3']);
 
+        const Y_OFFSET = 9;
+        const X_OFFSET = 12.25;
+
         // Text (emojis)
         svg.selectAll('.country-flag')
+            .data(data)
             .attr('class', 'country-flag')
-            .data(data).enter()
-            .append('text')
-            .text((d) => getFlagEmoji(d['iso_3'].slice(0, 2)))
-            .attr('x', (d, i) => xScale(d[property]) - 12.25)
-            .attr('y', (d, i) => yScale(d[Y_PROPERTY]) + 9)
+            .join('text')
+            .text((d) => getFlagEmoji(d.properties['iso_a2']))
+            .attr('x', (d, i) => {
+                if(d.properties[property]){
+                    return xScale(d.properties[property]) - X_OFFSET;
+                }
+                return -100;
+            })
+            .attr('y', (d, i) => {
+                if(d.properties[Y_PROPERTY]){
+                    return yScale(d.properties[Y_PROPERTY]) + Y_OFFSET;
+                }
+                return -100;
+            })
             .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
+            .on("click", (event, country) => {
+                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === country.properties['iso_a3']) {
+                    console.log("here")
+                    props.setSelectedCountry(null);
+                } else {
+                    props.setSelectedCountry(country);
+                }
+            })
             .style('opacity', (d, i) => {
-                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? '1' : '0.06';
+                console.log("I RAN");
+                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                    console.log("set to 1");
+                    return '1';
+                } else {
+                   // console.log("set to 0.3")
+                    return '0.3';
+                }
             })
             .style('font-size', (d, i) => {
-                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? '32px' : '24px';
+                return (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) ? '32px' : '24px';
             });
 
         // .attr('class', (d) => {
@@ -109,8 +136,8 @@ export default function ScatterPlot(props) {
         // (d) => {
         //     console.log("Adding selected?");
         //     // Add selected class if the country is selected
-        //     if (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) {
-        //         console.log(`Adding selected class to ${d['iso_3']}`);
+        //     if (selectedCountry && selectedCountry['iso_a3'] == d.properties['iso_3']) {
+        //         console.log(`Adding selected class to ${d.properties['iso_3']}`);
         //         return 'country-flag selected';
         //     }
         //     return 'country-flag';
@@ -155,7 +182,7 @@ export default function ScatterPlot(props) {
         <div id='scatter-plot'>
             <h2>Scatterplot</h2>
             <div ref={wrapperRef}>
-                <svg ref={svgRef} ></svg>
+                <svg ref={svgRef}/>
             </div>
         </div>
     )
