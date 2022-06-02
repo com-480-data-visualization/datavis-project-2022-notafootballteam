@@ -69,27 +69,30 @@ export default function ScatterPlot(props) {
 
         // Clippath circles
         svg.selectAll('clipPath')
-            .attr('class', 'clipPath')
             .data(data)
-            .join('clipPath')
+            .append('clipPath')
+            .attr('class', 'clipPath')
             .attr('id', (d, i) => 'clipPath-' + i)
             .append('circle')
             .attr('cx', (d, i) => xScale(d.properties[property]))
             .attr('cy', (d, i) => yScale(d.properties[Y_PROPERTY]))
+            .transition()
             .attr('r', (d, i) => {
-                return (selectedCountry && selectedCountry['iso_a3'] == d.properties['iso_a3']) ? 10 : 6;
+                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                    return 10;
+                } else {
+                    return 6;
+                }
             });
-
-        if (selectedCountry) console.log("selectedCountry['iso_a3']: ", selectedCountry['iso_a3']);
 
         const Y_OFFSET = 9;
         const X_OFFSET = 12.25;
 
         // Text (emojis)
         svg.selectAll('.country-flag')
-            .data(data)
-            .attr('class', 'country-flag')
+            .data(props.data.features)
             .join('text')
+            .attr('class', 'country-flag')
             .text((d) => getFlagEmoji(d.properties['iso_a2']))
             .attr('x', (d, i) => {
                 if(d.properties[property]){
@@ -111,6 +114,7 @@ export default function ScatterPlot(props) {
                     props.setSelectedCountry(country);
                 }
             })
+            .transition()
             .style('opacity', (d, i) => {
                 // console.log("I RAN");
                 if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
@@ -120,9 +124,13 @@ export default function ScatterPlot(props) {
                    // console.log("set to 0.3")
                     return '0.3';
                 }
-            })
-            .style('font-size', (d, i) => {
-                return (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) ? '32px' : '24px';
+            }).style('font-size', (d, i) => {
+                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                    return '32px';
+                } else {
+                   // console.log("set to 0.3")
+                    return '24px';
+                }
             });
 
         // .attr('class', (d) => {
@@ -142,15 +150,17 @@ export default function ScatterPlot(props) {
         //     return 'country-flag';
         // });
 
-        svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
-            .call(axisBottom(xScale));
-
-        svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(25, 0)")
-            .call(axisLeft(yScale));
+        svg.select(".x-axis")
+        .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
+        .call(axisBottom(xScale));
+          
+        svg.select(".y-axis")
+        .attr("transform", "translate(25, 0)")
+        .call(axisLeft(yScale));
+        // svg.append("g")
+        //     .attr("class", "axis")
+        //     attr("transform", "translate(25, 0)")
+        //     .call(axisLeft(yScale));
 
         // svg.selectAll("clipPath").data(data)
         //     .exit()
