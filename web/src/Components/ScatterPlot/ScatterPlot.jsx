@@ -179,7 +179,7 @@ export default function ScatterPlot(props) {
             .attr('y', height - SVG_OFFSET/2)
             .attr('text-anchor', 'middle')
             .style('font-size', 15)
-            .text('X axis name');
+            .text(d => d);
 
         // Y axis name
         svg.selectAll('.axis-y-label')
@@ -189,7 +189,7 @@ export default function ScatterPlot(props) {
         .attr('transform', 'translate(60,' + height + ')rotate(-90)')
         .attr('text-anchor', 'middle')
         .style('font-size', 12)
-        .text('Y axis name');
+        .text(d => d);
 
     }, [data, dimensions, props.selectedCountry, props.property]);
 
