@@ -11,6 +11,16 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }
 
     const OFFSET = 20;
 
+    const dictMinX = {
+        'Life Ladder': 1,
+        'Alcohol consumption': 0
+    };
+
+    const dictMaxX = {
+        'Life Ladder': 9,
+        'Alcohol consumption': 20
+    };
+
     useEffect(() => {
         const svg = select(svgRef.current);
         if (!dimensions) return;
@@ -18,22 +28,12 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }
         const width = dimensions.width;
         const height = dimensions.height;
 
-        const dictMinX = {
-            'Life Ladder': 1,
-            'Alcohol consumption': 0
-        };
-
-        const dictMaxX = {
-            'Life Ladder': 9,
-            'Alcohol consumption': 20
-        };
-
-        // prepare the data
-        const minThresh = dictMinX[onProperty];
-        const maxThresh = dictMaxX[onProperty];
+        // Analyze data
+        const minThresh = dictMinX[onProperty]; // e.g. 2
+        const maxThresh = dictMaxX[onProperty]; // e.g. 9
         const THRESHOLDS = range(minThresh, maxThresh + 1); // e.g. [2, 3, 4, 5, 6, 7, 8, 9];
-        console.log(THRESHOLDS);
 
+        // Create histograms
         const histogram = bin().thresholds(THRESHOLDS);
         const hapData = data.features.map(c => c.properties[onProperty]);
 

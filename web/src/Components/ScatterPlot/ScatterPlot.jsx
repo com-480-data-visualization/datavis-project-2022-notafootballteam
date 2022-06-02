@@ -65,7 +65,7 @@ export default function ScatterPlot(props) {
             .domain([MIN_Y_AXIS, MAX_Y_AXIS])
             .range([height - SVG_OFFSET, SVG_OFFSET]);
 
-           // console.log(data);
+        // console.log(data);
 
         // Clippath circles
         svg.selectAll('clipPath')
@@ -78,7 +78,7 @@ export default function ScatterPlot(props) {
             .attr('cy', (d, i) => yScale(d.properties[Y_PROPERTY]))
             .transition()
             .attr('r', (d, i) => {
-                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
                     return 10;
                 } else {
                     return 6;
@@ -95,20 +95,20 @@ export default function ScatterPlot(props) {
             .attr('class', 'country-flag')
             .text((d) => getFlagEmoji(d.properties['iso_a2']))
             .attr('x', (d, i) => {
-                if(d.properties[property]){
+                if (d.properties[property]) {
                     return xScale(d.properties[property]) - X_OFFSET;
                 }
                 return -100;
             })
             .attr('y', (d, i) => {
-                if(d.properties[Y_PROPERTY]){
+                if (d.properties[Y_PROPERTY]) {
                     return yScale(d.properties[Y_PROPERTY]) + Y_OFFSET;
                 }
                 return -100;
             })
             .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
             .on("click", (event, country) => {
-                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === country.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === country.properties['iso_a3']) {
                     props.setSelectedCountry(null);
                 } else {
                     props.setSelectedCountry(country);
@@ -117,18 +117,18 @@ export default function ScatterPlot(props) {
             .transition()
             .style('opacity', (d, i) => {
                 // console.log("I RAN");
-                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
                     // console.log("set to 1");
                     return '1';
                 } else {
-                   // console.log("set to 0.3")
+                    // console.log("set to 0.3")
                     return '0.3';
                 }
             }).style('font-size', (d, i) => {
-                if(props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
                     return '32px';
                 } else {
-                   // console.log("set to 0.3")
+                    // console.log("set to 0.3")
                     return '24px';
                 }
             });
@@ -151,12 +151,13 @@ export default function ScatterPlot(props) {
         // });
 
         svg.select(".x-axis")
-        .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
-        .call(axisBottom(xScale));
-          
+            .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
+            .call(axisBottom(xScale));
+
         svg.select(".y-axis")
-        .attr("transform", "translate(25, 0)")
-        .call(axisLeft(yScale));
+            .attr("transform", "translate(25, 0)")
+            .call(axisLeft(yScale));
+            
         // svg.append("g")
         //     .attr("class", "axis")
         //     attr("transform", "translate(25, 0)")
@@ -190,9 +191,9 @@ export default function ScatterPlot(props) {
     return (
         <div id='scatter-plot' ref={wrapperRef}>
             <h2>Scatterplot</h2>
-            {/* <div > */}
-                <svg ref={svgRef}/>
-            {/* </div> */}
+            <div>
+                <svg ref={svgRef} />
+            </div>
         </div>
     )
 };
