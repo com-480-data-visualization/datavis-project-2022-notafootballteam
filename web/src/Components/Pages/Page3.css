@@ -2,32 +2,134 @@ div#box-3 {
     grid-area: box-3;
 
     display: grid;
-    grid-template-rows: auto 40vh 40vh;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
+    grid-template-rows: auto auto auto 40vh;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
         "title title"
-        "data radar"
+        'country-name country-name'
+        "stats radar"
         "scatterplot scatterplot";
 }
 
-div#box-3 > * {
+div#box-3>* {
     /* border: 1px solid lightgray; */
 }
 
-div#box-3 > h1 {
+div#box-3>h1 {
     grid-area: title;
-
-    margin-bottom: 3vh;
+    margin-bottom: 1.5vh;
 }
 
-div#box-3 > div#country-data {
-    grid-area: data;
+div#box-3>h2 {
+    grid-area: country-name;
+    margin: 1vh auto;
+    font-size: 24px;
 }
 
-div#box-3 > div#scatter-plot {
+div#box-3>div#country-data {
+    grid-area: stats;
+}
+
+div#country-data {
+    display: grid;
+    grid-template-rows: repeat(11, auto);
+
+    margin: 2vh auto;
+    width: 100%;
+}
+
+div#country-data > div.table-row.region {
+    grid-row-start: 1;
+}
+
+div#country-data > div.table-row.pop {
+    grid-row-start: 2;
+}
+
+div#country-data > div.table-row.happ-score {
+    grid-row-start: 3;
+}
+
+div#country-data > div.table-row.happ-score-gdp {
+    grid-row-start: 4;
+}
+
+div#country-data > div.table-row.gdppc {
+    grid-row-start: 5;
+}
+
+div#country-data > div.table-row.alc {
+    grid-row-start: 6;
+}
+
+div#country-data > div.table-row.socs {
+    grid-row-start: 7;
+}
+
+div#country-data > div.table-row.hle {
+    grid-row-start: 8;
+}
+
+div#country-data > div.table-row.ftm {
+    grid-row-start: 9;
+}
+
+div#country-data > div.table-row.gener {
+    grid-row-start: 10;
+}
+
+div#country-data > div.table-row.corr {
+    grid-row-start: 11;
+}
+
+div#country-data > div.table-row {
+    grid-row-end: span 1;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 3fr 2fr;
+    grid-template-areas: 
+        "key value"
+        "desc value";
+
+    margin-bottom: 4px;
+}
+
+div#country-data div.table-key {
+    grid-area: key;
+
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    color: darkslategray;
+    text-align: right;
+}
+
+div#country-data div.table-description {
+    grid-area: desc;
+
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
+    color: darkslategray;
+    text-align: right;
+}
+
+div#country-data div.table-value {
+    grid-area: value;
+
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    color: darkslategray;
+    align-self: center;
+}
+
+div#box-3>div#scatter-plot {
     grid-area: scatterplot;
+    border: 1px solid gray;
 }
 
-div#box-3 > div#radar-chart {
+div#box-3>div#radar-chart {
     grid-area: radar;
 }

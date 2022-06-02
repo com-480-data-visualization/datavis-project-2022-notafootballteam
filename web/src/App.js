@@ -146,7 +146,6 @@ export default function App() {
       <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime} />
 
       <div className="box-container">
-
         <Page1
           data={top10HappiestData}
           selectedYear={selectedYear}
@@ -172,9 +171,6 @@ export default function App() {
           setSelectedCountry={setSelectedCountry}
           mapData={MapData[selectedYear]}
           property={property} />
-
-        <Page4 />
-
       </div>
     </div>
   );

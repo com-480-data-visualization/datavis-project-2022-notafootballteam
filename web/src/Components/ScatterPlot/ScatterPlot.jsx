@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from "react";
+import './ScatterPlot.css';
+
 import { select, selectAll, scaleBand, scaleLinear, min, max, axisBottom, axisLeft } from "d3";
 import useResizeObserver from "../../Utils/useResizeObserver";
-import './ScatterPlot.css';
+
+import { getFlagEmoji } from '../../Utils/utils.js';
 
 export default function ScatterPlot(props) {
 
@@ -11,14 +14,6 @@ export default function ScatterPlot(props) {
     const MAX_Y_AXIS = 9;
 
     const Y_PROPERTY = 'Life Ladder';
-
-    function getFlagEmoji(countryCode) {
-        const codePoints = countryCode
-            .toUpperCase()
-            .split('')
-            .map(char => 127397 + char.charCodeAt());
-        return String.fromCodePoint(...codePoints);
-    }
 
     const svgRef = useRef()
     const wrapperRef = useRef()
@@ -79,9 +74,9 @@ export default function ScatterPlot(props) {
             .transition()
             .attr('r', (d, i) => {
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
-                    return 10;
+                    return '10px';
                 } else {
-                    return 6;
+                    return '6px';
                 }
             });
 
@@ -157,7 +152,7 @@ export default function ScatterPlot(props) {
         svg.select(".y-axis")
             .attr("transform", "translate(25, 0)")
             .call(axisLeft(yScale));
-            
+
         // svg.append("g")
         //     .attr("class", "axis")
         //     attr("transform", "translate(25, 0)")
