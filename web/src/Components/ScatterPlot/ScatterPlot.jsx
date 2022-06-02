@@ -1,11 +1,16 @@
 import React, { useRef, useEffect } from "react";
-import { select, selectAll, scaleBand, scaleLinear, min, max } from "d3";
+import { select, selectAll, scaleBand, scaleLinear, min, max, axisBottom, axisLeft } from "d3";
 import useResizeObserver from "../../Utils/useResizeObserver";
 import './ScatterPlot.css';
 
 export default function ScatterPlot(props) {
 
+    const SVG_OFFSET = 25;
+
+    const MIN_Y_AXIS = 1;
     const MAX_Y_AXIS = 9;
+
+    const Y_PROPERTY = 'Life Ladder';
 
     function getFlagEmoji(countryCode) {
         const codePoints = countryCode
@@ -20,12 +25,33 @@ export default function ScatterPlot(props) {
     const dimensions = useResizeObserver(wrapperRef)
 
     const data = props.data;
-    const countryInfo = props.selectedCountry && props.selectedCountry.properties;
+    const selectedCountry = props.selectedCountry && props.selectedCountry.properties;
 
-    let xProperty = 'Log GDP per capita';
-    // props.data == [{iso_3: "AFG", "Life Ladder": 3.724 ...}, {iso_3: "Angola", ...}, {}, {}]
+    let property = props.property;
+    switch (property) {
+
+        case Y_PROPERTY:
+        case 'Happiness/GDP cap.':
+            property = 'Log GDP per capita';
+            break;
+
+        default:
+            break;
+    }
+
+    const minXMap = {
+        'Log GDP per capita': 6,
+        'Alcohol consumption': 0
+    }
+
+    const maxXMap = {
+        'Log GDP per capita': 12,
+        'Alcohol consumption': 10 // TODO: determine best value
+    }
 
     useEffect(() => {
+
+        console.log(`useEffect() run with selectedCountry set to ${selectedCountry}`);
 
         const svg = select(svgRef.current)
         if (!dimensions) return;
@@ -33,29 +59,80 @@ export default function ScatterPlot(props) {
         const width = dimensions.width;
         const height = dimensions.height;
 
-        const xMin = min(data, d => parseFloat(d[xProperty]));
-        const xMax = max(data, d => parseFloat(d[xProperty]));
-
-        // TODO: change as a f() of which property is selected
         const xScale = scaleLinear()
-            .domain([5, xMax + 1])
-            .range([0, width]);
+            .domain([minXMap[property], maxXMap[property]])
+            .range([SVG_OFFSET, width - SVG_OFFSET]);
 
         const yScale = scaleLinear()
-            .domain([0, MAX_Y_AXIS])
-            .range([height, 0]);
+            .domain([MIN_Y_AXIS, MAX_Y_AXIS])
+            .range([height - SVG_OFFSET, SVG_OFFSET]);
 
-        let countryCircles = svg.selectAll(".country-circle")
+        // Clippath circles
+        svg.selectAll('clipPath')
+            .attr('class', 'clipPath')
             .data(data)
             .enter()
-            .append("text")
-            .text(d => d['iso_3'])
-            .attr('x', (d, i) => xScale(d[xProperty]))
-            .attr('y', (d, i) => yScale(d['Life Ladder']));
+            .append('clipPath')
+            .attr('id', (d, i) => 'clipPath-' + i)
+            .append('circle')
+            .attr('cx', (d, i) => xScale(d[property]))
+            .attr('cy', (d, i) => yScale(d[Y_PROPERTY]))
+            .attr('r', (d, i) => {
+                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? 10 : 6;
+            });
 
-        countryCircles.data(data)
-            .exit()
-            .remove();
+        if (selectedCountry) console.log("selectedCountry['iso_a3']: ", selectedCountry['iso_a3']);
+
+        // Text (emojis)
+        svg.selectAll('.country-flag')
+            .attr('class', 'country-flag')
+            .data(data).enter()
+            .append('text')
+            .text((d) => getFlagEmoji(d['iso_3'].slice(0, 2)))
+            .attr('x', (d, i) => xScale(d[property]) - 12.25)
+            .attr('y', (d, i) => yScale(d[Y_PROPERTY]) + 9)
+            .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
+            .style('opacity', (d, i) => {
+                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? '1' : '0.06';
+            })
+            .style('font-size', (d, i) => {
+                return (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) ? '32px' : '24px';
+            });
+
+        // .attr('class', (d) => {
+        //     return 'country-flag';
+        // });
+
+        // svg.selectAll('.country-flag')
+        //     .exit().remove();
+
+        // (d) => {
+        //     console.log("Adding selected?");
+        //     // Add selected class if the country is selected
+        //     if (selectedCountry && selectedCountry['iso_a3'] == d['iso_3']) {
+        //         console.log(`Adding selected class to ${d['iso_3']}`);
+        //         return 'country-flag selected';
+        //     }
+        //     return 'country-flag';
+        // });
+
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0, " + (height - SVG_OFFSET) + ")")
+            .call(axisBottom(xScale));
+
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(25, 0)")
+            .call(axisLeft(yScale));
+
+        // svg.selectAll("clipPath").data(data)
+        //     .exit()
+        //     .remove();
+
+        // svg.selectAll(".country-flag").data(data)
+        //     .exit()
+        //     .remove();
 
         // X axis name
         // svg.append('text')
@@ -72,12 +149,14 @@ export default function ScatterPlot(props) {
         // .style('font-size', 12)
         // .text('Y axis name');
 
-    }, [props.data, dimensions]);
+    }, [data, dimensions, props.selectedCountry, props.property]);
 
     return (
-        <div id='scatter-plot' ref={wrapperRef}>
+        <div id='scatter-plot'>
             <h2>Scatterplot</h2>
-            <svg ref={svgRef}></svg>
+            <div ref={wrapperRef}>
+                <svg ref={svgRef} ></svg>
+            </div>
         </div>
     )
 };

@@ -108,7 +108,8 @@ export default function App() {
   const [yearData, setYearData] = useState([]);
 
   // Property
-  const [property, setProperty] = useState("Life Ladder");
+  const DEFAULT_PROPERTY = "Life Ladder";
+  const [property, setProperty] = useState(DEFAULT_PROPERTY);
 
   // Reload data when selected year changes
   useEffect(() => {

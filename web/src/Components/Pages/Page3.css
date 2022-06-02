@@ -7,7 +7,7 @@ div#box-3 {
     grid-template-areas: 
         "title title"
         "data radar"
-        "data scatterplot";
+        "scatterplot scatterplot";
 }
 
 div#box-3 > * {
