@@ -86,6 +86,15 @@ export default function ScatterPlot(props) {
             .join('text')
             .attr('class', 'country-flag')
             .text((d) => getFlagEmoji(d.properties['iso_a2']))
+            .on("click", (event, country) => {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === country.properties['iso_a2']) {
+                    props.setSelectedCountry(null);
+                } else {
+                    console.log(country)
+                    props.setSelectedCountry(country);
+                }
+            })
+            .transition()
             .attr('x', (d, i) => {
                 if (d.properties[xAxisProperty]) {
                     return xScale(d.properties[xAxisProperty]) - X_OFFSET;
@@ -99,15 +108,6 @@ export default function ScatterPlot(props) {
                 return -100;
             })
             .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
-            .on("click", (event, country) => {
-                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === country.properties['iso_a2']) {
-                    props.setSelectedCountry(null);
-                } else {
-                    console.log(country)
-                    props.setSelectedCountry(country);
-                }
-            })
-            .transition()
             .style('opacity', (d, i) => {
                 // console.log("I RAN");
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
