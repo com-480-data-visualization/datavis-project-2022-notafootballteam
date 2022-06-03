@@ -28,8 +28,6 @@
   touch-action: manipulation;
   /* Disables highlights at taps */
   -webkit-tap-highlight-color: transparent;
-  /* Disables text selection in general (inputs enabled below) */
-  -webkit-user-select: none;
   /* Disable callouts (when holding an element) */
   -webkit-touch-callout: none;
 }
