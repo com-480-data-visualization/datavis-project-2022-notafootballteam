@@ -94,8 +94,7 @@ export default function Page2(props) {
           The above histograms act as a comparison between the happiness tier in the considered country 
           and the alcohol consumption “performances” of its inhabitants. We consider this as a somehow acceptable metric 
           of the “lifestyle” you are expected to have - party hard western, true slavic gopnik or sober hardworker, 
-          the choice is now yours!`}<br /><br />
-        {`Thank you for your attention! We do hope this work may assist you in finding the country that truly makes you happy.`}
+          the choice is now yours!`}
       </p>
     </Box>
   );

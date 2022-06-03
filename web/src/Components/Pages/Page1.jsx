@@ -35,7 +35,9 @@ export default function Page1(props) {
       <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)} />
       <h2 className="page-1-bottom-subtitle">21 countries</h2>
       <p className="page-1-text-bottom">
-        {textBottom}
+        {`Above are the top 10 happiest countries since the start of the `}<a href='https://en.wikipedia.org/wiki/World_Happiness_Report'>World Happiness Report</a>{` index in 2005.
+  If you notice a pattern in bars shown between 2005 and 2021, that is perfectly normal. An expert observer would probably also note the following: the 2008 financial crisis reflects perfectly on the most abrupt changes of this ranking.
+  Years directly following late 2000s contain the most exotic results while slowly return to an expected ranking. Venezuela, Mexico and Costa Rica had the chance to appear... and disappear just as fast. No other developing country has appeared.`}
       </p>
     </Box>
   );

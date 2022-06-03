@@ -86,8 +86,17 @@ export default function Page3(props) {
       <RadarChart id='radar-chart'
         selectedCountry={props.selectedCountry} />
 
-      <h2>Data Sources</h2>
-      <p></p>
+      <div className='page-3-datasource'>
+        <h2 >Datasource</h2>
+          <p><a href='https://www.kaggle.com/datasets/ajaypalsinghlo/world-happiness-report-2021?resource=download&select=world-happiness-report.csv'>Dataset 1</a>: Results of the <a href='https://en.wikipedia.org/wiki/World_Happiness_Report'>World Happiness Report</a> research initiative conducted by the Gallup World Poll (GWP) in about 150 countries, for the period from 2005 to 2020.</p>
+          <p><a href='https://www.kaggle.com/datasets/ajaypalsinghlo/world-happiness-report-2021?resource=download&select=world-happiness-report-2021.csv'>Dataset 2</a>: 2021 results of the World Happiness Report.</p>
+          <p><a href='https://www.kaggle.com/datasets/sveneschlbeck/alcohol-consumption-per-capita-year-and-country'>Dataset 3</a>: Total alcohol consumption per capita (liters of pure alcohol, projected estimates, 15+ years of age) in 217 historically identifiable countries and 49 aggregates/areas (e.g. EU). The dataset contains interval data for certain years depending on the country.</p>
+      </div>
+
+      <div className='page-3-thankyou'>
+        <h2>Thank you</h2>
+        <p>Thank you for your attention! We do hope this work may assist you in finding the country that truly makes you happy.</p>
+      </div>
 
     </Box>
   );

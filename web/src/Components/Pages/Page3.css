@@ -8,7 +8,9 @@ div#box-3 {
         "title title"
         'country-name country-name'
         "stats radar"
-        "scatterplot scatterplot";
+        "scatterplot scatterplot"
+        "thankyou thankyou"
+        "datasource datasource";
 }
 
 div#box-3>* {
@@ -131,4 +133,19 @@ div#box-3>div#scatter-plot {
 
 div#box-3>div#radar-chart {
     grid-area: radar;
+}
+
+div#box-3>div.page-3-thankyou {
+    grid-area: thankyou;
+    margin: 3vh auto;
+} 
+
+div#box-3>div.page-3-datasource {
+    grid-area: datasource;
+    margin: auto;
+}
+
+div.page-3-datasource p, div.page-3-datasource a {
+    font-size: 12px;
+    line-height: 2vh;
 }
