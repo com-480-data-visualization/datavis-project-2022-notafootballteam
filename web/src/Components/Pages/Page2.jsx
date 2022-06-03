@@ -81,22 +81,21 @@ export default function Page2(props) {
       />
 
       <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)} />
-      <h2 className="page-2-bottom-subtitle">Alcohol</h2>
+      <h2 className="page-2-bottom-subtitle">What about alcohol?</h2>
       <p className="page-2-text-bottom">
         {`As a second part, we have investigated a more amusing relation
          (the project aims to make the visitors and its authors happy). 
          The American association of psyhology has published various studies showing alcohol acts as a `}
         <a href='https://www.psychologicalscience.org/news/alcohol-is-a-social-lubricant-study-confirms.html'>social lubricant</a>
-        {`:
-          alcohol was supposed to minimize negative emotions. If our first ambition was to show such an effect at country level, 
+        {`: alcohol is supposed to minimize negative emotions. If our first ambition was to show such an effect at country level, 
           those attempts did not pay. However, we aim to continue providing complete information to the reader 
-          considering his or her future place to live and we could not exclude alcohol. 
+          considering his or her future place to live and we could not exclude alcohol.`}<br /><br />
+        {`
           The above histograms act as a comparison between the happiness tier in the considered country 
           and the alcohol consumption “performances” of its inhabitants. We consider this as a somehow acceptable metric 
           of the “lifestyle” you are expected to have - party hard western, true slavic gopnik or sober hardworker, 
           the choice is now yours!`}<br /><br />
-        {`Many thanks for your attention. We do hope this work will contribute 
-          into making you find the country who really makes you happy!`}
+        {`Thank you for your attention! We do hope this work may assist you in finding the country that truly makes you happy.`}
       </p>
     </Box>
   );

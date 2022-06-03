@@ -86,6 +86,9 @@ export default function Page3(props) {
       <RadarChart id='radar-chart'
         selectedCountry={props.selectedCountry} />
 
+      <h2>Data Sources</h2>
+      <p></p>
+
     </Box>
   );
 };
