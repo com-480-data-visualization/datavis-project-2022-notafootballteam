@@ -66,6 +66,7 @@ export default function Page2(props) {
         id={'distr-hap'}
         data={props.mapData}
         onProperty={'Life Ladder'}
+        unitsDescr={'World Happiness Score Index'}
         year={props.year}
         selectedCountry={props.selectedCountry}
         color={'#24a0ed'}
@@ -75,6 +76,7 @@ export default function Page2(props) {
         id={'distr-alc'}
         data={props.mapData}
         onProperty={'Alcohol consumption'}
+        unitsDescr={"Yearly alcohol consumption per person (liters of pure alcohol, proj. estimates, 15+ years of age)"}
         year={props.year}
         selectedCountry={props.selectedCountry}
         color={'#24a0ed'}
