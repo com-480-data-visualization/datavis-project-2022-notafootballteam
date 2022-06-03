@@ -3,13 +3,14 @@ div#box-1 {
   
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 10vh auto auto 35vh auto auto;
+    grid-template-rows: 10vh auto auto 35vh auto auto auto;
     grid-template-areas:
       "title title"
       "text-top-left did-you-know"
       "chart-title chart-title"
       "chart chart"
       "button button"
+      "subtitle-p1 subtitle-p1"
       "text-bottom text-bottom";
   }
   
@@ -25,8 +26,8 @@ div#box-1 {
   div#box-1 > .did-you-know {
     grid-area: did-you-know;
   
-    margin: 2vh;
-    padding: 1vh;
+    margin: 2.5vh;
+    padding: 0.75vh;
 
     border-radius: 2vh;
     border: 1px solid rgba(0,0,0,0.4);
@@ -55,6 +56,10 @@ div#box-1 {
   
   div#box-1 > button.play-button {
     grid-area: button;
+  }
+
+  div#box-1 > h2.page-1-bottom-subtitle {
+    grid-area: subtitle-p1;
   }
   
   div#box-1 > .page-1-text-bottom {

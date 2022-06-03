@@ -3,9 +3,10 @@ div#box-2 {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto auto auto auto 35vh auto auto;
+    grid-template-rows: 10vh auto auto auto auto auto 35vh auto auto;
     grid-template-areas:
       "title title"
+      "subtitle subtitle"
       "text-top text-top"
       "property property"
       "map-title map-title"
@@ -17,6 +18,10 @@ div#box-2 {
 
 div#box-2 > h1.page-2-title {
     grid-area: title;
+}
+
+div#box-2 > h2.page-2-subtitle {
+    grid-area: subtitle;
 }
 
 div#box-2 > h2.page-2-map-title {

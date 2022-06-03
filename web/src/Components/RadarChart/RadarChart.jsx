@@ -11,25 +11,14 @@ export default function RadarChart(props) {
     const dimensions = useResizeObserver(wrapperRef);
     const dataPoint = props.selectedCountry && props.selectedCountry.properties;
 
-    let data = {
-        "Life Ladder": 0,
-        "Log GDP per capita": 0,
-        "Alcohol consumption": 0,
-        "Freedom to make life choices": 0,
-        "Perceptions of corruption": 0
-    };
-
-    if (dataPoint) {
-        const { "Life Ladder": ll,
-            "Log GDP per capita": gdp,
-            "Alcohol consumption": alc,
-            "Freedom to make life choices": fdm,
-            "Perceptions of corruption": corr, ...rest } = dataPoint;
-        data = { ll, gdp, alc, fdm, corr };
-    }
-
-    // console.log(partialObject) // => { a: 'a', b: 'b'}
-    console.log(data) // => { c: 'c', d: 'd'}
+    // if (dataPoint) {
+    //     const { "Life Ladder": ll,
+    //         "Log GDP per capita": gdp,
+    //         "Alcohol consumption": alc,
+    //         "Freedom to make life choices": fdm,
+    //         "Perceptions of corruption": corr, ...rest } = dataPoint;
+    //     data = { ll, gdp, alc, fdm, corr };
+    // }
 
     const FEATURE_LABEL_DICT = {
         "Life Ladder": "HAPPINESS",

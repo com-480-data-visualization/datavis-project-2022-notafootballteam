@@ -54,10 +54,10 @@ h2 {
   font-weight: 800;
   color: darkslategray;
 
-  margin: auto;
+  margin: 2vh auto 1vh;
 }
 
-p, a {
+p, a, strong {
   font-size: 15px;
   text-align: justify;
   line-height: 3vh;
