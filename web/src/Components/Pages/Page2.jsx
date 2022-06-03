@@ -10,7 +10,7 @@ const dictForUserSelect = {
   "Happiness/GDP cap.": "Happiness/GDP per capita",
   "Life Ladder": "Happiness Score",
   "Alcohol consumption": "Alcohol consumption",
-  "Log GDP per capita": "GDP"
+  "Log GDP per capita": "GDP per capita"
 };
 
 const dictForMapTitle = {
@@ -38,11 +38,11 @@ export default function Page2(props) {
         {` Moreover, our top 10 seems to contain mainly countries known for their high level of income.
         So could we conclude that (outside major crisis) happiness only depends on money? 
         The below map provides with a larger overview of happiness rate in the world.
-        As many economical statistics, the correlation with the economical production per capita (≈ personal richness) is obvious:
-         just change the slider to “GDP/capita” to convince yourself of the similarities. 
+        As many economical statistics, the correlation with the economical production per capita (≈ individual wealth) is obvious:
+         just compare GDP per capita (set the slider below to "GDP per capita”) to convince yourself of the similarities. 
         `}<br/><br/>
         {`But let’s say you are not at all interested by money: good news, there are some major outliers
-         and we wanted to make them obvious : selecting the “Happiness/GDP/capita” map in the below list should make them obvious. 
+         and we wanted to make them obvious: selecting the “Happiness/GDP/capita” map in the below list should make them obvious. 
         Great, we found our outliers, let’s now see what other parameters influence happiness.
         Previous research has shown Social Support, Life expectancy, Freedom, Absence of corruption and Generosity as good candidates.
         A simple click on a country will select it and update the whole website accordingly.
