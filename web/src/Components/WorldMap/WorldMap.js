@@ -42,7 +42,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
                 setHoveredCountry(null);
             })
             .on("click", (event, selected) => {
-                if (selectedCountry && selectedCountry.properties['iso_a3'] == selected.properties['iso_a3']) {
+                if (selectedCountry && selectedCountry.properties['iso_a2'] === selected.properties['iso_a2']) {
                     setSelectedCountry(null);
                 } else {
                     setSelectedCountry(selected);
@@ -59,7 +59,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
 
                 } else {
 
-                    if (selectedCountry && selectedCountry.properties['iso_a3'] === feature.properties['iso_a3']) {
+                    if (selectedCountry && selectedCountry.properties['iso_a2'] === feature.properties['iso_a2']) {
                         return "orange";
                     }
 
@@ -67,7 +67,7 @@ const WorldMap = ({ data, property, selectedCountry, setSelectedCountry }) => {
                 }
             })
             .attr("stroke", (feature) => {
-                if (selectedCountry && selectedCountry.properties['iso_a3'] === feature.properties['iso_a3']) {
+                if (selectedCountry && selectedCountry.properties['iso_a2'] === feature.properties['iso_a2']) {
                     return "orange";
                 }
                 return "none";

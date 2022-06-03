@@ -3,7 +3,7 @@ div#box-2 {
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10vh auto auto auto auto auto 35vh auto auto;
+    grid-template-rows: 10vh auto auto auto auto auto 35vh auto auto auto;
     grid-template-areas:
       "title title"
       "subtitle subtitle"
@@ -13,6 +13,7 @@ div#box-2 {
       "chart chart"
       "distr-left distr-right"
       "button button"
+      "subtitle-p2 subtitle-p2"
       "text-bottom text-bottom";
 }
 
@@ -97,6 +98,10 @@ div#box-2 > div#distr-alc {
 
 div#box-2 > button.play-button {
     grid-area: button;
+}
+
+div#box-2 > h2.page-2-bottom-subtitle {
+    grid-area: subtitle-p2;
 }
 
 div#box-2 > p.page-2-text-bottom {

@@ -70,7 +70,7 @@ export default function ScatterPlot(props) {
             .attr('cy', (d, i) => yScale(d.properties[Y_PROPERTY]))
             .transition()
             .attr('r', (d, i) => {
-                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
                     return 10;
                 } else {
                     return 6;
@@ -100,16 +100,17 @@ export default function ScatterPlot(props) {
             })
             .attr("clip-path", (d, i) => "url(#clipPath-" + i + ")")
             .on("click", (event, country) => {
-                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === country.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === country.properties['iso_a2']) {
                     props.setSelectedCountry(null);
                 } else {
+                    console.log(country)
                     props.setSelectedCountry(country);
                 }
             })
             .transition()
             .style('opacity', (d, i) => {
                 // console.log("I RAN");
-                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
                     // console.log("set to 1");
                     return '1';
                 } else {
@@ -117,7 +118,7 @@ export default function ScatterPlot(props) {
                     return '0.3';
                 }
             }).style('font-size', (d, i) => {
-                if (props.selectedCountry && props.selectedCountry.properties['iso_a3'] === d.properties['iso_a3']) {
+                if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
                     return '32px';
                 } else {
                     // console.log("set to 0.3")
