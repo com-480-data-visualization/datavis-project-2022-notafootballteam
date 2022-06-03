@@ -61,27 +61,19 @@ export default function RadarChart(props) {
         const centerX = width / 2;
         const centerY = height / 2;
 
-        // TODO
         let radialScale = scaleLinear().domain([0, 1]).range([0, maxRadius - 60]);
         let ticks = [0.2, 0.4, 0.6, 0.8, 1];
 
-        ticks.forEach(t =>
-            svg.append('circle')
-                .attr('class', 'circle-radial')
-                .attr("cx", centerX)
-                .attr("cy", centerY)
-                .attr("fill", "none")
-                .attr("stroke", "gray")
-                .attr("r", radialScale(t))
-                .exit().remove()
-        );
-
-        // ticks.forEach(t =>
-        //     svg.append("text")
-        //         .attr("x", centerX + 5)
-        //         .attr("y", centerY - radialScale(t))
-        //         .text(t.toString())
-        // );
+        svg.selectAll('.circle-radial')
+        .data(ticks)
+        .join('circle')
+        .attr('class', 'circle-radial')
+        .attr("cx", centerX)
+        .attr("cy", centerY)
+        .attr("fill", "none")
+        .attr("stroke", "gray")
+        .attr("r", t => radialScale(t))
+        
 
         // Credits to DANNY YANG (https://yangdanny97.github.io/blog/2019/03/01/D3-Spider-Chart)
         function angleToCoordinate(angle, value) {
@@ -92,36 +84,40 @@ export default function RadarChart(props) {
 
         const features = Object.keys(FEATURE_MAX_DICT);
 
-        for (var i = 0; i < features.length; i++) {
-            let ft_name = features[i];
-            let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
-            let line_coordinate = angleToCoordinate(angle, 1);
-            let label_coordinate = angleToCoordinate(angle, 1.3);
+        svg.selectAll(".line-radar")
+            .data(features)
+            .join("line")
+            .attr("class", "line-radar")
+            .attr("x1", centerX)
+            .attr("y1", centerY)
+            .attr("x2", (ft_name, i) => {
+                let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                let line_coordinate = angleToCoordinate(angle, 1);
+                return line_coordinate.x
+            })
+            .attr("y2",  (ft_name, i) => {
+                let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                let line_coordinate = angleToCoordinate(angle, 1);
+                return line_coordinate.y
+            })
+            .attr("stroke", "darkslategray");
 
-            //draw axis line
-            svg.append("line")
-                .attr("x1", centerX)
-                .attr("y1", centerY)
-                .attr("x2", line_coordinate.x)
-                .attr("y2", line_coordinate.y)
-                .attr("stroke", "darkslategray");
-
-            // svg.selectAll('.line-radar')
-            //     .data(data)
-            //     .join('line')
-            //     .attr('class', 'line-radar')
-            //     .attr("x1", centerX)
-            //     .attr("y1", centerY)
-            //     .attr("x2", line_coordinate.x)
-            //     .attr("y2", line_coordinate.y)
-            //     .attr("stroke", "darkslategray");
-
-            //draw axis label
-            svg.append("text")
-                .attr("x", label_coordinate.x)
-                .attr("y", label_coordinate.y)
-                .text(FEATURE_LABEL_DICT[ft_name]);
-        }
+             //draw axis label
+             svg.selectAll(".text-radar")
+             .data(features)
+             .join("text")
+             .attr("class", "text-radar")
+             .attr("x", (feature, i) => {
+                let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                let label_coordinate = angleToCoordinate(angle, 1.3);
+                return label_coordinate.x
+             })
+             .attr("y", (feature, i) => {
+                let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                let label_coordinate = angleToCoordinate(angle, 1.3);
+                return label_coordinate.y
+             })
+             .text(ft_name => FEATURE_LABEL_DICT[ft_name]);
 
         function getPathCoordinates(data_point) {
             let coordinates = [];
@@ -134,13 +130,15 @@ export default function RadarChart(props) {
         }
 
         let coordinates = dataPoint ? getPathCoordinates(dataPoint) : { "x": 0, "y": 0 };
-        // let line =
+        console.log(coordinates)
 
         //draw the path element
-        svg.append("path")
-            .datum(coordinates)
-            .attr("d", line()
-                .x(d => d.x)
+        svg.selectAll('.path-radar')
+            .data([coordinates])
+            .join("path")
+            .attr("class", "path-radar")
+            .transition()
+            .attr("d", line().x(d => d.x)
                 .y(d => d.y)
             ).attr("stroke-width", 3)
             .attr("stroke", '#24a0ed')
