@@ -17,10 +17,7 @@ A visualization project on the topic of happiness, GDP per capita and ... alcoho
 ## Milestone 2 (Friday 6 May, 5 pm) 
 [Report For Milestone 2](Milestones/milestone2.ipynb)
 
-[Homepage](https://com-480-data-visualization.github.io/datavis-project-2022-notafootballteam/)
-
 ## Milestone 3 (Friday 3 June, 5 pm) 
-[Report For Milestone 3]()
-
 [Homepage](https://com-480-data-visualization.github.io/datavis-project-2022-notafootballteam/)
-
+[Report](report.pdf)
+[Video](https://www.loom.com/share/84136531cc624005a8cb057f594867dc)
