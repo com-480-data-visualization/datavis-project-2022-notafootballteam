@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/datavis-project-2022-notafootballteam/static/css/main.9a7af56c.css",
-    "main.js": "/datavis-project-2022-notafootballteam/static/js/main.5a36da53.js",
+    "main.css": "/datavis-project-2022-notafootballteam/static/css/main.70552b6f.css",
+    "main.js": "/datavis-project-2022-notafootballteam/static/js/main.40d7e13b.js",
     "static/js/787.d1d4a2c2.chunk.js": "/datavis-project-2022-notafootballteam/static/js/787.d1d4a2c2.chunk.js",
     "static/media/data_2016.csv": "/datavis-project-2022-notafootballteam/static/media/data_2016.34a1878d3356c680a5e7.csv",
     "static/media/data_2017.csv": "/datavis-project-2022-notafootballteam/static/media/data_2017.879cdd791a3dfd294aa4.csv",
@@ -38,12 +38,12 @@
     "static/media/top_10_2019.csv": "/datavis-project-2022-notafootballteam/static/media/top_10_2019.e3c659a29115aac4fa21.csv",
     "static/media/top_10_2013.csv": "/datavis-project-2022-notafootballteam/static/media/top_10_2013.be18f27bd9dde759ded2.csv",
     "static/media/top_10_2012.csv": "/datavis-project-2022-notafootballteam/static/media/top_10_2012.47a7a36a0017efd8e336.csv",
-    "main.9a7af56c.css.map": "/datavis-project-2022-notafootballteam/static/css/main.9a7af56c.css.map",
-    "main.5a36da53.js.map": "/datavis-project-2022-notafootballteam/static/js/main.5a36da53.js.map",
+    "main.70552b6f.css.map": "/datavis-project-2022-notafootballteam/static/css/main.70552b6f.css.map",
+    "main.40d7e13b.js.map": "/datavis-project-2022-notafootballteam/static/js/main.40d7e13b.js.map",
     "787.d1d4a2c2.chunk.js.map": "/datavis-project-2022-notafootballteam/static/js/787.d1d4a2c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a7af56c.css",
-    "static/js/main.5a36da53.js"
+    "static/css/main.70552b6f.css",
+    "static/js/main.40d7e13b.js"
   ]
 }
