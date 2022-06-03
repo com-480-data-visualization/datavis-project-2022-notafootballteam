@@ -39,10 +39,10 @@ export default function Page2(props) {
         So could we conclude that (outside major crisis) happiness only depends on money? 
         The below map provides with a larger overview of happiness rate in the world.
         As many economical statistics, the correlation with the economical production per capita (≈ individual wealth) is obvious:
-         just compare GDP per capita (set the slider below to "GDP per capita”) to convince yourself of the similarities. 
-        `}<br/><br/>
-        {`But let’s say you are not at all interested by money: good news, there are some major outliers
-         and we wanted to make them obvious: selecting the “Happiness/GDP/capita” map in the below list should make them obvious. 
+         just compare the Happiness Score to a country's GDP per capita (set the slider below to "GDP per capita”) to convince yourself of the similarities. 
+        `}<br /><br />
+        {`But let’s say you are not at all interested by money: good news, there `}<strong>are</strong>{` some major outliers
+         and we wanted to make them obvious: selecting the “Happiness/GDP per capita” map in the below list should make them obvious. 
         Great, we found our outliers, let’s now see what other parameters influence happiness.
         Previous research has shown Social Support, Life expectancy, Freedom, Absence of corruption and Generosity as good candidates.
         A simple click on a country will select it and update the whole website accordingly.
@@ -81,17 +81,21 @@ export default function Page2(props) {
       />
 
       <PlayButton playTime={props.playTime} handleClick={() => props.setPlayTime(!props.playTime)} />
+      <h2 className="page-2-bottom-subtitle">Alcohol</h2>
       <p className="page-2-text-bottom">
-        {`Alcohol [à mettre en évidence] : As a second part, we have investigated a more amusing relation
+        {`As a second part, we have investigated a more amusing relation
          (the project aims to make the visitors and its authors happy). 
-         The American association of psyhology has published various studies showing alcohol acts as a social lubricant:
+         The American association of psyhology has published various studies showing alcohol acts as a `}
+        <a href='https://www.psychologicalscience.org/news/alcohol-is-a-social-lubricant-study-confirms.html'>social lubricant</a>
+        {`:
           alcohol was supposed to minimize negative emotions. If our first ambition was to show such an effect at country level, 
           those attempts did not pay. However, we aim to continue providing complete information to the reader 
           considering his or her future place to live and we could not exclude alcohol. 
           The above histograms act as a comparison between the happiness tier in the considered country 
           and the alcohol consumption “performances” of its inhabitants. We consider this as a somehow acceptable metric 
           of the “lifestyle” you are expected to have - party hard western, true slavic gopnik or sober hardworker, 
-          the choice is now yours! Many thanks for your attention and we do hope this work will contribute 
+          the choice is now yours!`}<br /><br />
+        {`Many thanks for your attention. We do hope this work will contribute 
           into making you find the country who really makes you happy!`}
       </p>
     </Box>
