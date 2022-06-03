@@ -1,0 +1,63 @@
+#time-slider {
+    /* Position and size */
+    position: fixed;
+    
+    left: 5vw;
+    width: 90vw;
+    bottom: 1vh;
+    height: 35px;
+    z-index: 10;
+    /* margin: 90vh 10vw auto; */
+
+    /* Style */
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.95); /*dim the background*/
+
+    /* Container properties */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4vh 0;
+}
+
+#time-slider > div.time-slider-year {
+    color: darkslategrey;
+    font-size: 10px;
+    font-weight: 700;
+    
+    transition: font-size 0.2s, color 1s;
+    cursor: pointer;
+}
+
+#time-slider > div.current {
+    color: black;
+    font-size: 16px;
+    font-weight: 900;
+
+    transition: font-size 0.5s;
+}
+
+#time-slider > div.time-slider-year:hover {
+    font-size: 16px;
+}
+
+#time-slider > button {
+    width: 50px;
+    height: 25px;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    
+    border: none;
+    cursor: pointer;
+
+    color: darkslategrey;
+    background-color: transparent;
+
+    transition: font-size 0.1s;
+}
+
+#time-slider > button:hover {
+    font-size: 20px;
+}

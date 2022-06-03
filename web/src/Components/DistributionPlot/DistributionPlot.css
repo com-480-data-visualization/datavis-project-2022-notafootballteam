@@ -1,0 +1,25 @@
+div.distr-plot {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas:
+        "title"
+        "chart";
+}
+
+div.distr-plot > h2 {
+    grid-area: title;
+}
+
+div.distr-plot > div {
+    grid-area: chart;
+}
+
+div.distr-plot > div > svg {
+    height : 100%;
+    width : 100%;
+}
+
+div.distr-plot .x-axis text {
+    font-size: 12px;
+    font-family: inherit;
+}

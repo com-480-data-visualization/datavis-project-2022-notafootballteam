@@ -1,0 +1,36 @@
+#scatter-plot {
+    display: grid;
+    
+    grid-template-rows: 5vh auto;
+    grid-template-areas: "title" "svg";
+}
+
+#scatter-plot, #scatter-plot svg {
+    height: 100%;
+    width: 100%;
+}
+
+#scatter-plot > h2 {
+    grid-area: title;
+}
+
+/* #scatter-plot > svg {
+    grid-area: svg;
+    width: 100%;
+    height: 100%;
+  } */
+
+#scatter-plot > div {
+    grid-area: svg;
+    height: 100%;
+}
+
+#scatter-plot text.country-flag:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#scatter-plot .axis text {
+    font-size: 14px;
+    font-family: inherit;
+}

@@ -1,143 +1,97 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+
+  font-size: 2.5vh;
+  color: black;
+  letter-spacing: -0.6px;
+
+  /* Any width property will truly mean the total visual width of element */
+  box-sizing: border-box;
+
+  /* Main Colors */
+  --yellow-bg-top: rgb(255, 250, 50);
+  --yellow-bg-bottom: rgb(255, 226, 20);
+  --color-alt-1: #24a0ed;
+
+  /* --- Fonts --- */
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* --- PWA-friendly area --- */
+
+  /* Disables double-tap to zoom */
+  touch-action: manipulation;
+  /* Disables highlights at taps */
+  -webkit-tap-highlight-color: transparent;
+  /* Disables text selection in general (inputs enabled below) */
+  -webkit-user-select: none;
+  /* Disable callouts (when holding an element) */
+  -webkit-touch-callout: none;
+}
+
+body {
+  height: 100%;
+  background: var(--yellow-bg-top);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  text-transform: uppercase;
+  font-size: 45px;
+  font-weight: 900;
+
+  margin: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 800;
+  color: darkslategray;
+
+  margin: 2vh auto 1vh;
+}
+
+p, a, strong {
+  font-size: 15px;
+  text-align: justify;
+  line-height: 3vh;
+}
+
+p {
+  font-weight: 400;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+div.box-container {
+  display: grid;
+  grid-template-rows: auto auto auto auto 20vh;
+  grid-template-areas:
+    "box-1"
+    "box-2"
+    "box-3"
+    "box-4"
+    "footer";
+
+  width: 97vw;
+  margin: 5vh auto;
+  margin-top: 10vh;
+}
+
+/* For desktop: */
+
+@media only screen and (min-width: 768px) {
+  div.box-container {
+    max-width: 900px;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-  grid-template-rows: 100vh 100vh 100vh 100vh;
-  grid-template-areas:
-    ". page-1 ."
-    ". page-2 ."
-    ". page-3 ."
-    ". page-4 ."
-}
-
-.page {
-  border-style:dotted;
-}
-
-.page-1 {
-  grid-area: page-1;
-
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    "title"
-    "chart"
-    "text";
-}
-
-.page-1-title {
-  grid-area: title;
-}
-
-.page-1-chart {
-  grid-area: chart;
-}
-
-.page-1-chart > img {
-  height: 40vh;
-}
-
-.page-1-text {
-  grid-area: text;
-}
-
-.page-2 {
-  grid-area: page-2;
-
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-  "title"
-  "chart"
-  "text";
-}
-
-.page-2-title {
-  grid-area: title;
-}
-
-.page-2-chart {
-  grid-area: chart;
-}
-
-.page-2-chart > img {
-  width: 100%;
-}
-
-.page-2-text {
-  grid-area: text;
-}
-
-.page-3 {
-  grid-area: page-3;
-
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-    "alc happy"
-    "scatterplot radar";
-}
-
-.page-3 img {
-  height: 20vh;
-}
-
-.page-3-top-left {
-  grid-area: alc;
-}
-
-.page-3-top-right {
-  grid-area: happy;
-}
-
-.page-3-bottom-left {
-  grid-area: scatterplot;
-}
-
-.page-3-bottom-right {
-  grid-area: radar;
-}
-
-.page-4 {
-  grid-area: page-4;
-}
-
-#timeline-overlay {
-  position: fixed;
-  top: 90vh;
-  left: 20vw;
-  width: 60vw;
-  height: 5vh;
-  z-index: 10;
-  background-color: rgba(0,0,0,0.5); /*dim the background*/
 }

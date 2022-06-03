@@ -1,0 +1,11 @@
+#animated-bar-chart, #animated-bar-chart > svg {
+    height: 100%;
+    width: 100%;
+}
+
+#animated-bar-chart > svg text.label {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 900;
+    fill: rgba(0,0,0,0.85);
+}

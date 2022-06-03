@@ -1,0 +1,104 @@
+div#box-2 {
+    grid-area: box-2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh auto auto auto auto auto 35vh auto auto;
+    grid-template-areas:
+      "title title"
+      "subtitle subtitle"
+      "text-top text-top"
+      "property property"
+      "map-title map-title"
+      "chart chart"
+      "distr-left distr-right"
+      "button button"
+      "text-bottom text-bottom";
+}
+
+div#box-2 > h1.page-2-title {
+    grid-area: title;
+}
+
+div#box-2 > h2.page-2-subtitle {
+    grid-area: subtitle;
+}
+
+div#box-2 > h2.page-2-map-title {
+    grid-area: map-title;
+    margin: 2vh auto;
+
+    font-weight: 800;
+    color: darkslategray;
+}
+
+div#box-2 > p.page-2-text-top {
+    grid-area: text-top;
+}
+
+div#box-2 > div.page-2-attr-selection {
+    grid-area: property;
+    
+    margin: 3vh auto;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "text menu";
+}
+
+div#box-2 > div.page-2-attr-selection > div {
+    grid-area: text;
+
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    color: darkslategray;
+
+    margin: auto;
+    margin-right: 2vh;
+}
+
+div#box-2 > div.page-2-attr-selection > select {
+    grid-area: menu;
+
+    width: 35vw;
+    height: 32px;
+    cursor: pointer;
+
+    margin: auto;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    color: darkslategray;
+
+    border-radius: 10px;
+}
+
+div#box-2 > div#world-map {
+    grid-area: chart;
+}
+
+div#box-2 > div#distr-hap {
+    grid-area: distr-left;
+
+    margin-top: 3vh;
+    /* border: 1px solid gray; */
+}
+
+div#box-2 > div#distr-alc {
+    grid-area: distr-right;
+
+    margin-top: 3vh;
+    /* temporary */
+    /* border: 1px solid gray; */
+}
+
+div#box-2 > button.play-button {
+    grid-area: button;
+}
+
+div#box-2 > p.page-2-text-bottom {
+    grid-area: text-bottom;
+}
