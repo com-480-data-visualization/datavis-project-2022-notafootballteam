@@ -1,25 +1,45 @@
 div.distr-plot {
     display: grid;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
         "title"
+        "units-descr"
         "chart";
 }
 
-div.distr-plot > h2 {
+div.distr-plot>h2 {
     grid-area: title;
+    margin-bottom: 0;
 }
 
-div.distr-plot > div {
+div.distr-plot>p.units-descr {
+    grid-area: units-descr;
+
+    padding: 0;
+
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: initial;
+    color: darkslategray;
+    text-align: center;
+}
+
+div.distr-plot>div {
     grid-area: chart;
 }
 
-div.distr-plot > div > svg {
-    height : 100%;
-    width : 100%;
+div.distr-plot>div>svg {
+    height: 100%;
+    width: 100%;
 }
 
 div.distr-plot .x-axis text {
+    font-size: 12px;
+    font-family: inherit;
+}
+
+div.distr-plot .y-axis text {
     font-size: 12px;
     font-family: inherit;
 }

@@ -28,8 +28,6 @@
   touch-action: manipulation;
   /* Disables highlights at taps */
   -webkit-tap-highlight-color: transparent;
-  /* Disables text selection in general (inputs enabled below) */
-  -webkit-user-select: none;
   /* Disable callouts (when holding an element) */
   -webkit-touch-callout: none;
 }
@@ -64,6 +62,10 @@ p, a, strong {
   line-height: 3vh;
 }
 
+strong {
+  color: darkslategray;
+}
+
 p {
   font-weight: 400;
   padding: 5px;
@@ -72,6 +74,8 @@ p {
 a {
   text-decoration: none;
   font-weight: 600;
+  color: darkslategray;
+  font-style: italic;
   transition: font-size 0.1s;
 }
 

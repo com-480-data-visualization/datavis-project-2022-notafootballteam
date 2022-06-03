@@ -3,7 +3,7 @@ import { select, bin, range, scaleLinear, axisBottom, axisLeft, max, min, scaleB
 import useResizeObserver from "../../Utils/useResizeObserver";
 import './DistributionPlot.css';
 
-const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }) => {
+const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty, unitsDescr }) => {
 
     const svgRef = useRef();
     const wrapperRef = useRef();
@@ -37,16 +37,11 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }
         const histogram = bin().thresholds(THRESHOLDS);
         const hapData = data.features.map(c => c.properties[onProperty]);
 
-
-
         const buckets = histogram(hapData);
         const maxBinElems = max(buckets, d => d.length);
 
         const xScale = scaleLinear().domain([minThresh, maxThresh]).range([OFFSET, width - OFFSET]);
         const yScale = scaleLinear().domain([0, maxBinElems]).range([height - OFFSET, OFFSET]);
-
-        // if (selectedCountry)
-        //     console.log(xScale(selectedCountry.properties[onProperty]));
 
         svg.selectAll("rect")
             .data(buckets)
@@ -70,12 +65,23 @@ const DistributionPlot = ({ id, data, selectedCountry, year, color, onProperty }
             .attr("transform", "translate(" + 0 + "," + (height - OFFSET) + ")")
             .call(axisBottom(xScale).ticks(THRESHOLDS.length));
 
+        // Y axis name
+        svg.selectAll('.axis-y-label')
+        .data(['Num countries'])
+        .join("text")
+        .attr("class", "axis-y-label")
+        .attr('transform', 'translate(' + 10 + ', ' + height/2 + ')rotate(-90)')
+        .attr('text-anchor', 'middle')
+        .style('font-size', 10)
+        .text('NUMBER OF COUNTRIES');
+
 
     }, [data, selectedCountry, year, dimensions, onProperty]);
 
     return (
         <div id={id} className={'distr-plot'}>
             <h2>Distribution of {onProperty == 'Life Ladder' ? "Happiness" : "Alcohol Consumption"}</h2>
+            <p className='units-descr'>{unitsDescr}</p>
             <div ref={wrapperRef}>
                 <svg ref={svgRef}>
                     <g className="x-axis" />
