@@ -71,7 +71,7 @@ export default function ScatterPlot(props) {
             .transition()
             .attr('r', (d, i) => {
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
-                    return 10;
+                    return 6;
                 } else {
                     return 6;
                 }
@@ -109,39 +109,18 @@ export default function ScatterPlot(props) {
             })
             .transition()
             .style('opacity', (d, i) => {
-                // console.log("I RAN");
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
-                    // console.log("set to 1");
                     return '1';
                 } else {
-                    // console.log("set to 0.3")
-                    return '0.3';
+                    return '0.5';
                 }
             }).style('font-size', (d, i) => {
                 if (props.selectedCountry && props.selectedCountry.properties['iso_a2'] === d.properties['iso_a2']) {
                     return '32px';
                 } else {
-                    // console.log("set to 0.3")
                     return '24px';
                 }
             });
-
-        // .attr('class', (d) => {
-        //     return 'country-flag';
-        // });
-
-        // svg.selectAll('.country-flag')
-        //     .exit().remove();
-
-        // (d) => {
-        //     console.log("Adding selected?");
-        //     // Add selected class if the country is selected
-        //     if (selectedCountry && selectedCountry['iso_a3'] == d.properties['iso_3']) {
-        //         console.log(`Adding selected class to ${d.properties['iso_3']}`);
-        //         return 'country-flag selected';
-        //     }
-        //     return 'country-flag';
-        // });
 
         svg.select(".x-axis")
             .attr("transform", "translate(0, " + (height - SVG_OFFSET * 1.25) + ")")
@@ -150,22 +129,6 @@ export default function ScatterPlot(props) {
         svg.select(".y-axis")
             .attr("transform", "translate(" + SVG_OFFSET + ", 0)")
             .call(axisLeft(yScale));
-
-        // svg.append("g")
-        //     .attr("class", "axis")
-        //     attr("transform", "translate(25, 0)")
-        //     .call(axisLeft(yScale));
-
-        // svg.selectAll("clipPath").data(data)
-        //     .exit()
-        //     .remove();
-
-        // svg.selectAll(".country-flag").data(data)
-        //     .exit()
-        //     .remove();
-
-
-        // TODO: enable without re-render issue (@Mohamed)
 
         const axis_names = ["X axis name", "Y axis name"]
         //X axis name
