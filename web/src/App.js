@@ -10,7 +10,8 @@ import TimeSlider from './Components/TimeSlider/TimeSlider';
 import Page1 from './Components/Pages/Page1';
 import Page2 from './Components/Pages/Page2';
 import Page3 from './Components/Pages/Page3';
-import Page4 from './Components/Pages/Page4';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 
 // ------------------------------------------ Data ------------------------------------------
 
@@ -142,9 +143,11 @@ export default function App() {
     <div className="App">
 
       <Background />
-      <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime} />
 
       <div className="box-container">
+
+        <Header />
+        
         <Page1
           data={top10HappiestData}
           selectedYear={selectedYear}
@@ -169,6 +172,10 @@ export default function App() {
           setSelectedCountry={setSelectedCountry}
           mapData={MapData[selectedYear]}
           property={property} />
+
+        <TimeSlider currYear={selectedYear} handleSelect={setSelectedYear} playTime={playTime} handleButtonClick={setPlayTime} />
+        <Footer />
+
       </div>
     </div>
   );

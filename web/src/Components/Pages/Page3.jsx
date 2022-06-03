@@ -3,6 +3,7 @@ import './Page3.css';
 
 import Box from '../Box/Box';
 import ScatterPlot from '../ScatterPlot/ScatterPlot';
+import RadarChart from '../RadarChart/RadarChart';
 import { getFlagEmoji } from '../../Utils/utils.js';
 
 export default function Page3(props) {
@@ -82,9 +83,8 @@ export default function Page3(props) {
         setSelectedCountry={props.setSelectedCountry}
         property={props.property} />
 
-      <div id='radar-chart'>
-        <h2>Radar Chart</h2>
-      </div>
+      <RadarChart id='radar-chart'
+        selectedCountry={props.selectedCountry} />
 
     </Box>
   );

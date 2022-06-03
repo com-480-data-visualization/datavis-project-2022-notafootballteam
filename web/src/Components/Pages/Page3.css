@@ -2,8 +2,8 @@ div#box-3 {
     grid-area: box-3;
 
     display: grid;
-    grid-template-rows: auto 5vh auto 50vh;
-    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 6vh auto 50vh;
+    grid-template-columns: 3fr 2fr;
     grid-template-areas:
         "title title"
         'country-name country-name'

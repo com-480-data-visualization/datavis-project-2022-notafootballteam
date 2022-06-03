@@ -18,25 +18,22 @@ export default function ScatterPlot(props) {
     const svgRef = useRef();
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
-
     const data = props.data.features;
-    const selectedCountry = props.selectedCountry && props.selectedCountry.properties;
 
-    let property = props.property;
-    switch (property) {
+    let xAxisProperty = props.property;
+    switch (xAxisProperty) {
 
         case Y_PROPERTY:
         case 'Happiness/GDP cap.':
-            property = 'Log GDP per capita';
+            xAxisProperty = 'Log GDP per capita'; // Switch to GDP for X axis if "Happiness" is selected
             break;
-
         default:
             break;
     }
 
     const minXMap = {
         'Log GDP per capita': 6,
-        'Alcohol consumption': 0
+        'Alcohol consumption': -0.5
     }
 
     const maxXMap = {
@@ -53,7 +50,7 @@ export default function ScatterPlot(props) {
         const height = dimensions.height;
 
         const xScale = scaleLinear()
-            .domain([minXMap[property], maxXMap[property]])
+            .domain([minXMap[xAxisProperty], maxXMap[xAxisProperty]])
             .range([SVG_OFFSET, width - SVG_OFFSET]);
 
         const yScale = scaleLinear()
@@ -69,7 +66,7 @@ export default function ScatterPlot(props) {
             .attr('class', 'clipPath')
             .attr('id', (d, i) => 'clipPath-' + i)
             .append('circle')
-            .attr('cx', (d, i) => xScale(d.properties[property]))
+            .attr('cx', (d, i) => xScale(d.properties[xAxisProperty]))
             .attr('cy', (d, i) => yScale(d.properties[Y_PROPERTY]))
             .transition()
             .attr('r', (d, i) => {
@@ -90,8 +87,8 @@ export default function ScatterPlot(props) {
             .attr('class', 'country-flag')
             .text((d) => getFlagEmoji(d.properties['iso_a2']))
             .attr('x', (d, i) => {
-                if (d.properties[property]) {
-                    return xScale(d.properties[property]) - X_OFFSET;
+                if (d.properties[xAxisProperty]) {
+                    return xScale(d.properties[xAxisProperty]) - X_OFFSET;
                 }
                 return -100;
             })
@@ -179,7 +176,7 @@ export default function ScatterPlot(props) {
             .attr('y', height - 5)
             .attr('text-anchor', 'middle')
             .style('font-size', 15)
-            .text(property.toUpperCase());
+            .text(xAxisProperty.toUpperCase());
 
         // Y axis name
         svg.selectAll('.axis-y-label')
@@ -195,7 +192,7 @@ export default function ScatterPlot(props) {
 
     return (
         <div id='scatter-plot'>
-            <h2>Global Chart</h2>
+            <h2>Global Scatterplot</h2>
             <div ref={wrapperRef}>
                 <svg ref={svgRef}>
                     <g className="x-axis axis" />

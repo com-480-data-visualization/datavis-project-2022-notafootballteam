@@ -1,7 +1,7 @@
 #scatter-plot {
     display: grid;
     
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 5vh auto;
     grid-template-areas: "title" "svg";
 }
 
@@ -14,17 +14,15 @@
     grid-area: title;
 }
 
-#scatter-plot > svg {
+/* #scatter-plot > svg {
     grid-area: svg;
     width: 100%;
     height: 100%;
-  }
+  } */
 
 #scatter-plot > div {
     grid-area: svg;
     height: 100%;
-    /* border: 1px solid gray; */
-    /* border-radius: 10px; */
 }
 
 #scatter-plot text.country-flag:hover {
