@@ -2,7 +2,7 @@ div#box-3 {
     grid-area: box-3;
 
     display: grid;
-    grid-template-rows: auto 6vh auto 50vh;
+    grid-template-rows: 10vh 6vh auto 50vh auto auto;
     grid-template-columns: 3fr 2fr;
     grid-template-areas:
         "title title"
@@ -11,10 +11,6 @@ div#box-3 {
         "scatterplot scatterplot"
         "thankyou thankyou"
         "datasource datasource";
-}
-
-div#box-3>* {
-    /* border: 1px solid lightgray; */
 }
 
 div#box-3>h1 {
